@@ -1,0 +1,129 @@
+---
+output: github_document
+editor_options: 
+  markdown: 
+    wrap: 80
+
+vignette: >
+  %\VignetteIndexEntry{BeeBDC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r InitialFlags, include=TRUE}
+setwd("/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25")
+```
+
+```{r InitialFlags, include=TRUE}
+
+# Read data and run initial flags
+RichmondBirdwingData <- readr::read_csv("records-2025-02-20/records-2025-02-20.csv",
+                                        col_types = BeeBDC::ColTypeR()) %>%
+  dplyr::mutate(database_id = paste0("RBB_", 1:nrow(.)),
+                .before = scientificName) %>% 
+  bdc::bdc_scientificName_empty(data = ., sci_name = "scientificName") %>%
+  bdc::bdc_coordinates_empty(data = ., lat = "decimalLatitude",
+                             lon = "decimalLongitude") %>%
+  bdc::bdc_coordinates_outOfRange(data = ., lat = "decimalLatitude",
+                                  lon = "decimalLongitude") %>%
+  bdc::bdc_basisOfRecords_notStandard(
+    data = .,
+    basisOfRecord = "basisOfRecord",
+    names_to_keep = c(
+      # Keep all plus some at the bottom.
+      "Event",
+      "HUMAN_OBSERVATION",
+      "HumanObservation",
+      "LIVING_SPECIMEN",
+      "LivingSpecimen",
+      "MACHINE_OBSERVATION",
+      "MachineObservation",
+      "MATERIAL_SAMPLE",
+      "O",
+      "Occurrence",
+      "MaterialSample",
+      "OBSERVATION",
+      "Preserved Specimen",
+      "PRESERVED_SPECIMEN",
+      "preservedspecimen Specimen",
+      "Preservedspecimen",
+      "PreservedSpecimen",
+      "preservedspecimen",
+      "S",
+      "Specimen",
+      "Taxon",
+      "UNKNOWN",
+      "",
+      NA,
+      "NA",
+      "LITERATURE", 
+      "None", "Pinned Specimen", "Voucher reared", "Emerged specimen"
+    )) %>% 
+  BeeBDC::flagAbsent(data = ., PresAbs = "occurrenceStatus") %>%
+  BeeBDC::flagLicense(data = .,
+                      strings_to_restrict = "all",
+                      # DON'T flag if in the following dataSource(s)
+                      excludeDataSource = NULL) %>%
+  BeeBDC::summaryFun(
+    data = .,
+    # Don't filter these columns (or NULL)
+    dontFilterThese = NULL,
+    # Remove the filtering columns?
+    removeFilterColumns = FALSE,
+    # Filter to ONLY cleaned data?
+    filterClean = FALSE)
+
+  # Space
+RichmondBirdwingData <- RichmondBirdwingData %>%
+  BeeBDC::jbd_coordinates_precision(data = ., lon = "decimalLongitude",
+                                    lat = "decimalLatitude", ndec = 2  # number of decimals to be tested
+  ) %>%
+  BeeBDC::coordUncerFlagR(data = ., uncerColumn = "coordinateUncertaintyInMeters",
+                          threshold = 1000) %>%
+  BeeBDC::dupeSummary(
+    data = .,
+    path = tempdir(),
+    # options are "ID","collectionInfo", or "both"
+    duplicatedBy = "collectionInfo", 
+    # The columns to generate completeness info from (and to sort by completness)
+    completeness_cols = c("decimalLatitude",  "decimalLongitude",
+                          "scientificName", "eventDate"),
+    # The columns to ADDITIONALLY consider when finding duplicates in collectionInfo
+    collectionCols = c("decimalLatitude", "decimalLongitude", "scientificName", "eventDate", 
+                       "recordedBy"),
+    # The columns to combine, one-by-one with the collectionCols
+    collectInfoColumns = c("catalogNumber", "otherCatalogNumbers"),
+    # Custom comparisons — as a list of columns to compare
+    # RAW custom comparisons do not use the character and number thresholds
+    CustomComparisonsRAW = dplyr::lst(c("catalogNumber", "institutionCode", "scientificName")),
+    # Other custom comparisons use the character and number thresholds
+    CustomComparisons = dplyr::lst(
+                                   c("occurrenceID", "scientificName")),
+    # The order in which you want to KEEP duplicated based on data source
+    # try unique(check_time$dataSource)
+    sourceOrder = c("CAES", "Gai", "Ecd","BMont", "BMin", "EPEL", "ASP", "KP", "EcoS", "EaCO",
+                    "FSCA", "Bal", "SMC", "Lic", "Arm",
+                    "USGS", "ALA", "VicWam", "GBIF","SCAN","iDigBio"),
+    # Paige ordering is done using the database_id prefix, not the dataSource prefix.
+    prefixOrder = c("Paige", "Dorey"),
+    # Set the complexity threshold for id letter and number length
+    # minimum number of characters when WITH the numberThreshold
+    characterThreshold = 2,
+    # minimum number of numbers when WITH the characterThreshold
+    numberThreshold = 3,
+    # Minimum number of numbers WITHOUT any characters
+    numberOnlyThreshold = 5
+  ) %>% # END dupeSummary
+  dplyr::as_tibble(col_types = BeeBDC::ColTypeR()) %>% 
+  BeeBDC::summaryFun(data = ., dontFilterThese = NULL, removeFilterColumns = FALSE,
+                     filterClean = FALSE) 
+
+table(RichmondBirdwingData$scientificName)
+
+
+RichmondBirdwingData %>% 
+  BeeBDC::interactiveMapR(outPath = getwd(),
+                          speciesList = "ALL")
+
+
+```
