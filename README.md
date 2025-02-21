@@ -3,7 +3,7 @@
 This is a simple GitHub page to host some activities for the BIOL361 cohort
 
 ## Directory
-* [Birdwing butterfly map](Ornithoptera_richmondia.html)
+* [Birdwing butterfly map](https://htmlpreview.github.io/https://github.com/jbdorey/BIOL361_25/Ornithoptera_richmondia.html)
 
 ### Dependencies
 
