@@ -1,0 +1,26 @@
+url: https://jbdorey.github.io/BIOL361_25/
+
+title: "BIOL361"
+
+template:
+  params:
+    bootswatch: lumen
+    
+development:
+  mode: auto
+
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+    - text: "Functions"
+      href: reference/index.html
+    - icon: fas fa-book
+      text: "Articles"
+      menu:
+      -  text: "Birdwing map"
+         href: Ornithoptera_richmondia.html
+   
+  components: 
+    home: ~
+    
