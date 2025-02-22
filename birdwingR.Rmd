@@ -127,3 +127,17 @@ RichmondBirdwingData %>%
 
 
 ```
+
+
+
+
+```{r QLDmap }
+  # Make a map where the QLD points are all red
+RichmondBirdwingData %>%
+  dplyr::mutate(.summary = dplyr::if_else(stateProvince == "Queensland", FALSE, TRUE)) %>% 
+  BeeBDC::interactiveMapR(outPath = getwd(),
+                          speciesList = "ALL")
+
+
+
+```
