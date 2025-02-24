@@ -13,7 +13,7 @@ output:
     fig_caption: true
     latex_engine: xelatex
 urlcolor: blue
-abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**"
+abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**. This will involve (1) reading in GIS data, (2) plotting those data, and (3) running some simple analyses."
 ---
 
 ```{r libraryChunk, load-packages, include=FALSE}
@@ -37,9 +37,12 @@ demonstratorVersion = FALSE
 
 ```{r secretRootPath, include=FALSE}
 # Set the RootPath to the prac folder
-RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1"
+RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac2"
 setwd(RootPath)
 ```
+
+
+
 
 
 
