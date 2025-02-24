@@ -4,6 +4,8 @@ title: "BIOL361_25"
 
 template:
   bootstrap: 5
+  
+destination: docs
     
 development:
   mode: auto
