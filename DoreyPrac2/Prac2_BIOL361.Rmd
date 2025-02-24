@@ -55,6 +55,7 @@ One of the most-commonly known raster file formats would be the *.jpg* format. B
 
 ![The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix](Media_P2_BIOL361/dplyr_zoom.jpg)
 
+### Vector data (points and lines)
 
 ## Projections
 
