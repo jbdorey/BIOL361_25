@@ -13,7 +13,7 @@ output:
     fig_caption: true
     latex_engine: xelatex
 urlcolor: blue
-abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**. This will involve (1) reading in GIS data, (2) plotting those data, and (3) running some simple analyses."
+abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**. This will involve (1) learning some GIS data basics, (2) reading in GIS data, (3) plotting those data, and (4) running some simple analyses."
 ---
 
 ```{r libraryChunk, load-packages, include=FALSE}
@@ -42,7 +42,7 @@ setwd(RootPath)
 ```
 
 
-
+# Read in data
 
 
 
