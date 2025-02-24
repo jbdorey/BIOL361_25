@@ -2,6 +2,11 @@
 ================
 Dr James B Dorey, University of Wollongong
 
+<!-- badges: start -->
+
+[![License](https://img.shields.io/badge/license-GPL%20(%3E=%203)-lightgrey.svg?style=flat)](http://www.gnu.org/licenses/gpl-3.0.html)
+
+<!-- badges: end -->
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 ### University of Wollongong
