@@ -1,15 +1,10 @@
 url: https://jbdorey.github.io/BIOL361_25/
-
 title: "BIOL361_25"
-
 template:
   bootstrap: 5
-  
 destination: docs
-    
 development:
   mode: auto
-
 navbar:
   left:
     - icon: fa-home
@@ -23,7 +18,3 @@ navbar:
          href: Ornithoptera_richmondia.html
       -  text: "Prac 1 — R and tidyverse basics"
          href: DoreyPrac1/Prac1_BIOL361.html
-   
-  components: 
-    home: ~
-    
