@@ -12,6 +12,8 @@ output:
     highlight: pygments
     fig_caption: true
     latex_engine: xelatex
+pkgdown:
+  as_is: true
 urlcolor: blue
 abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**. This will involve (1) learning some GIS data basics, (2) reading in and plot GIS data, and (3) running some simple analyses."
 ---
@@ -62,7 +64,9 @@ One of the most-commonly known raster file formats would be the *.jpg* format. B
 
 Vector data formats are even simpler, I think than raster data formats. Once again, you are all familiar with these formats! Probably the most-common one would be the *.pdf* format. But others exist like *.svg* and *.shp*. Vector file formats **do not have pixels** at all, which actually has some benefits. This means that we can keep zooming and zooming in on a vector file (just as we did above) and we will never see pixels! 
 
-![The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix](Media_P2_BIOL361/Vector_zoom.png)
+Below, you can see a cutout of a *.pdf* map file which has vector data (letters, numbers, points, and lines) as well as raster data embedded (a raster map of elevation). On the left hand side you can see that we can zoom into the 18ºS and the lines without any pixels appearing. But, on the right hand side, you cna see that the lines of the map remain clear but the pixels of the map begin to appear! 
+
+![Two map figures with insets showing the impact of zooming into vector and raster data.](Media_P2_BIOL361/Vector_zoom.png)
 
 ## Projections
 

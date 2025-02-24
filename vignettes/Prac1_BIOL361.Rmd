@@ -12,6 +12,8 @@ output:
     highlight: pygments
     fig_caption: true
     latex_engine: xelatex
+pkgdown:
+  as_is: true
 urlcolor: blue
 abstract: "This practical class should not be particularly onerous. Today is mostly focussed on giving you a very brief overview of **R** and **RStudio**. 
 
