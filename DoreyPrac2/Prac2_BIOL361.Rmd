@@ -43,7 +43,11 @@ setwd(RootPath)
 
 # GIS data basics
 
+People are often quite intimidated by working with any data, let alone specialised datasets and formats! Even **Excell** data formats can be scary if you're so inclined. So, I'll try to dispell some of your fears in this section as even "complex" data can be demistified. Much of the data that we are going to be using isn't *actually* complex!
+
 ## Raster and vector data
+
+
 
 ## Projections
 
@@ -53,10 +57,7 @@ setwd(RootPath)
 
 ### *terra* (formerly *raster*)
 
-```{r}
-TEST <- readr::read_csv("/Users/jamesdorey/Desktop/Uni/My_papers/Pollen_equivelance/R_workflow/Table_outputs/1.4_FilteredAusOccurrences.csv")
 
-```
 
 # Read and plot data
 
