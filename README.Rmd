@@ -22,10 +22,15 @@ vignette: >
 
 ```{r websiteSetUp, eval = FALSE, include=FALSE}
 setwd("/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25")
+
+  # Setup github pages 
+  # See https://happygitwithr.com/common-remote-setups.html 
+  # AND see https://pkgdown.r-lib.org/index.html
 usethis::use_git("jbdorey/BIOL361_25")
   # Do this only once
 # Run once to configure your package to use and deploy pkgdown
 usethis::use_pkgdown_github_pages()
+# Preview your site locally before publishing
 pkgdown::build_site()
 usethis::use_github_action("pkgdown")
 usethis::use_git_remote("origin", url = NULL, overwrite = TRUE)
