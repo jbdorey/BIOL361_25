@@ -20,7 +20,7 @@ vignette: >
 
 <!-- badges: end -->
 
-```{r websiteSetUp, eval = FALSE}
+```{r websiteSetUp, eval = FALSE, include=FALSE}
   # Do this only once
 #usethis::use_pkgdown()
 pkgdown::build_site()

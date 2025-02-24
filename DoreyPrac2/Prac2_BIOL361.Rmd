@@ -1,0 +1,66 @@
+---
+title: "BIOL361 Prac 2 — GIS in R"
+author: Dr James B Dorey, University of Wollongong
+date: "Version `r format(Sys.time(), '%Y-%m-%d')`; practical 2025-03-31"
+output: 
+   rmarkdown::html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: true
+    number_sections: true
+    theme: cerulean
+    highlight: pygments
+    fig_caption: true
+    latex_engine: xelatex
+urlcolor: blue
+abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**"
+---
+
+```{r libraryChunk, load-packages, include=FALSE}
+# Markdown written by James B Dorey; contact jdorey@uow.edu.au (jbdorey@me.com) if help is needed.
+# markdown packages
+library(rmarkdown)
+library(formatR)
+library(styler)
+library(kableExtra)
+
+# Load core packages
+library(dplyr)
+
+options(width = 60)
+matrix(runif(100), ncol = 20)
+demonstratorVersion = FALSE
+
+```
+
+`r if(demonstratorVersion == TRUE){"\\\n\n**THIS IS A DEMONSTRATOR ONLY VERSION**\\\n"}`
+
+```{r secretRootPath, include=FALSE}
+# Set the RootPath to the prac folder
+RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1"
+setwd(RootPath)
+```
+
+
+
+
+
+
+
+
+
+
+
+
+# What's coming next week?
+
+Next week, we will be extending some of what we learnt here in order to read in GIS data, make some maps, and do some simple analyses.
+
+# Packages used today
+
+![](Media_P1_BIOL361/dplyr.png){width="200px"} 
+![](Media_P1_BIOL361/readr.png){width="200px"}
+![](Media_P1_BIOL361/magrittr.png){width="200px"} 
+![](Media_P1_BIOL361/stringr.png){width="200px"}
+
+Plus the default R packages, **base** and **utils** 
