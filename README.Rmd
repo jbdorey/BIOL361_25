@@ -1,4 +1,32 @@
-# BIOL361 2025 — Conservation Biology; University of Wollongong
+---
+output: github_document
+editor_options: 
+  markdown: 
+    wrap: 80
+
+vignette: >
+  %\VignetteIndexEntry{BIOL361}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include=FALSE}
+library(readr)
+```
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+
+## **BIOL361** 2025 — Conservation Biology; University of Wollongong
 
 This is a simple GitHub page to host some activities for the BIOL361 cohort
 
