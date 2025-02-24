@@ -1,9 +1,8 @@
+**BIOL361** — Conservation Biology ’25
+================
+Dr James B Dorey, University of Wollongong
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
-## **BIOL361** 2025
-
-### Conservation Biology
 
 ### University of Wollongong
 
@@ -17,6 +16,8 @@ map](https://jbdorey.github.io/BIOL361_25/Ornithoptera%20richmondia.html).
 
 ## Directory
 
+- [Practical four](DoreyPrac1/Prac1_BIOL361.html)
+- \[Practical five\]
 - [Birdwing butterfly
   map](https://jbdorey.github.io/BIOL361_25/Ornithoptera%20richmondia.html)
 

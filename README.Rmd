@@ -1,14 +1,7 @@
 ---
 title: "**BIOL361** — Conservation Biology '25"
 author: Dr James B Dorey, University of Wollongong
-output: 
-   rmarkdown::html_document:
-    toc: false
-    number_sections: false
-    theme: cerulean
-    highlight: pygments
-    fig_caption: true
-    latex_engine: xelatex
+output: github_document
 urlcolor: blue
 
 editor_options: 
