@@ -1,8 +1,19 @@
-pandoc: '3.2'
-pkgdown: 2.1.1
-pkgdown_sha: ~
-articles: {}
-last_built: 2025-02-24T03:35Z
-urls:
-  reference: https://jbdorey.github.io/BIOL361_25/reference
-  article: https://jbdorey.github.io/BIOL361_25/articles
+url: https://jbdorey.github.io/BIOL361_25/
+title: "BIOL361"
+template:
+  bootstrap: 5
+development:
+  mode: auto
+navbar:
+  left:
+    - icon: fa-home
+      href: index.html
+      aria-label: Go to package home
+    - icon: fas fa-book
+      text: "Articles"
+      aria-label: Available pages
+      menu:
+      -  text: Birdwing map
+         href: Ornithoptera_richmondia.html
+      -  text: Prac 1 — R and tidyverse basics
+         href: tutorials/Prac1_BIOL361.html
