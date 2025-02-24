@@ -3,6 +3,7 @@ url: https://jbdorey.github.io/BIOL361_25/
 title: "BIOL361_25"
 
 template:
+  bootstrap: 5
   params:
     bootswatch: lumen
     
