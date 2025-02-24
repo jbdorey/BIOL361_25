@@ -1,6 +1,6 @@
 url: https://jbdorey.github.io/BIOL361_25/
 
-title: "BIOL361"
+title: "BIOL361_25"
 
 template:
   params:
@@ -20,6 +20,8 @@ navbar:
       menu:
       -  text: "Birdwing map"
          href: Ornithoptera_richmondia.html
+      -  text: "Prac 1 — R and tidyverse basics"
+         href: DoreyPrac1/Prac1_BIOL361.html
    
   components: 
     home: ~
