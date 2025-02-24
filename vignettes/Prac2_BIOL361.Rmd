@@ -87,11 +87,13 @@ It's clear that these projection are visually very... diverse. This becomes a pr
 
 Different GIS programs tend to have different file formats. **ArcMap** is the most cagey (as it's a proprietary program) and so has a bunch of annoying proprietary file formats. **QGIS** is open source and tends to use some simpler formats (yay!). **R** is more-or-less able to open any of those formats and read them in (even more yay!). Let's install the needed packages and have a very short discussion of their [preferred] formats.
 
-### *sf* (formerly *sp*)
-
 ### *terra* (formerly *raster*)
 
+The **terra** package is mostly used to deal with raster data, but has some ability to work with vector data as well. *(It was also formerly called **raster**.)*
 
+### *sf* (formerly *sp*)
+
+The **sf**, or *simple feature* package (formerly **sp**) mainly works with vector data. That's to say that by-and-large, it works with points and lines. However, it does have some abilities to use raster as well.
 
 # Read and plot data
 

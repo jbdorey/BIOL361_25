@@ -9,18 +9,17 @@ template:
 development:
   mode: auto
 navbar:
-    left:
-       - icon: fa-home
-         href: index.html
-         aria-label: Go to package home
-       - icon: fas fa-book
-         text: "Articles"
-         aria-label: Available pages
-         menu:
-         -  text: Birdwing map
-            href: articles/Ornithoptera_richmondia.html
-         -  text: Prac 1 — R and tidyverse basics
-            href: articles/Prac1_BIOL361.html
-         -  text: Prac 2 — GIS
-            href: articles/Prac2_BIOL361.html
-    right: [reference, articles, tutorials]
+  left:
+    - icon: fa-home
+      href: index.html
+      aria-label: Go to package home
+    - icon: fas fa-book
+      text: "Articles"
+      aria-label: Available pages
+      menu:
+      -  text: Birdwing map
+         href: articles/Ornithoptera_richmondia.html
+      -  text: Prac 1 — R and tidyverse basics
+         href: articles/Prac1_BIOL361.html
+      -  text: Prac 2 — GIS
+         href: articles/Prac2_BIOL361.html
