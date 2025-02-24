@@ -47,7 +47,11 @@ People are often quite intimidated by working with any data, let alone specialis
 
 ## Raster and vector data
 
+Alright, so I know that I said our data weren't complex and then I threw two random and scary-sounding words at you. Well, don't stress I'll break it down and also point out that *raster* and *vector* data are also regularly used by most of us on a daily basis! In the shortest terms possible... *raster* data are matrices/tables of data and vector data are simply points and lines. 
 
+### Raster data (matrices or tables)
+
+One of the most-commonly known raster file formats would be the *.jpg* format. But, many others are commonly used, such as *.tiff*, *.png*, and *.gif*. You might be wondering "How on Earth is that a matrix or table??". And loo, fair enough.
 
 ## Projections
 
