@@ -29,12 +29,13 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Go to package home"><span class="fa fa-home"></span></a></li>
 <li class="active nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Available pages"><span class="fa fas fa-book"></span> Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../articles/Prac1_BIOL361.html">BIOL361 Prac 1 — R and tidyverse basics</a></li>
-    <li><a class="dropdown-item" href="../articles/Prac2_BIOL361.html">BIOL361 Prac 2 — GIS in R</a></li>
+<li><a class="dropdown-item" href="../articles/Ornithoptera_richmondia.html">Birdwing map</a></li>
+    <li><a class="dropdown-item" href="../articles/Prac1_BIOL361.html">Prac 1 — R and tidyverse basics</a></li>
+    <li><a class="dropdown-item" href="../articles/Prac2_BIOL361.html">Prac 2 — GIS</a></li>
   </ul>
 </li>
       </ul>
@@ -188,16 +189,23 @@ those formats and read them in (even more yay!). Let’s install the
 needed packages and have a very short discussion of their [preferred]
 formats.</p>
 <div class="section level4" number="1.3.1">
-<h4 id="sf-formerly-sp">
-<span class="header-section-number">1.3.1</span> <em>sf</em>
-(formerly <em>sp</em>)<a class="anchor" aria-label="anchor" href="#sf-formerly-sp"></a>
-</h4>
-</div>
-<div class="section level4" number="1.3.2">
 <h4 id="terra-formerly-raster">
-<span class="header-section-number">1.3.2</span> <em>terra</em>
+<span class="header-section-number">1.3.1</span> <em>terra</em>
 (formerly <em>raster</em>)<a class="anchor" aria-label="anchor" href="#terra-formerly-raster"></a>
 </h4>
+<p>The <strong>terra</strong> package is mostly used to deal with raster
+data, but has some ability to work with vector data as well. <em>(It was
+also formerly called <strong>raster</strong>.)</em></p>
+</div>
+<div class="section level4" number="1.3.2">
+<h4 id="sf-formerly-sp">
+<span class="header-section-number">1.3.2</span> <em>sf</em>
+(formerly <em>sp</em>)<a class="anchor" aria-label="anchor" href="#sf-formerly-sp"></a>
+</h4>
+<p>The <strong>sf</strong>, or <em>simple feature</em> package (formerly
+<strong>sp</strong>) mainly works with vector data. That’s to say that
+by-and-large, it works with points and lines. However, it does have some
+abilities to use raster as well.</p>
 </div>
 </div>
 </div>
