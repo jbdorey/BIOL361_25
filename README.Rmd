@@ -21,10 +21,13 @@ vignette: >
 <!-- badges: end -->
 
 ```{r websiteSetUp, eval = FALSE, include=FALSE}
+setwd("/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25")
   # Do this only once
 #usethis::use_pkgdown()
 pkgdown::build_site()
 usethis::use_github_action("pkgdown")
+usethis::use_git_remote("origin", url = NULL, overwrite = TRUE)
+usethis::use_github(private = FALSE)
 ```
 
 ```{r setup, include=FALSE}
