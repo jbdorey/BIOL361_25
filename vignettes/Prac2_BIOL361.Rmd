@@ -57,6 +57,8 @@ One of the most-commonly known raster file formats would be the *.jpg* format. B
 
 ### Vector data (points and lines)
 
+Vector data formats are even simpler, I think than raster data formats. Once again, you are all familiar with these formats! Probably the most-common one would be the *.pdf* format. But others exist like *.svg* and *.shp*. Vector file formats **do not have pixels** at all, which actually has some benefits. This means that we can keep zooming and zooming in on a vector file (just as we did above) and we will never see pixels! 
+
 ## Projections
 
 ## *R* formats

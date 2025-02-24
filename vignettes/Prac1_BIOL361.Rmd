@@ -25,7 +25,6 @@ abstract: "This practical class should not be particularly onerous. Today is mos
 # markdown packages
 library(rmarkdown)
 library(formatR)
-library(styler)
 library(kableExtra)
 
 # Load core packages
