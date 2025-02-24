@@ -13,7 +13,7 @@ navbar:
       text: "Articles"
       aria-label: Available pages
       menu:
-      -  text: "Birdwing map"
+      -  text: Birdwing map
          href: Ornithoptera_richmondia.html
-      -  text: "Prac 1 — R and tidyverse basics"
+      -  text: Prac 1 — R and tidyverse basics
          href: DoreyPrac1/Prac1_BIOL361.html
