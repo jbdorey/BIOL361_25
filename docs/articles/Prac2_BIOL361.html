@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>BIOL361 Prac 2 — GIS in R • BIOL361</title>
-<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
@@ -16,7 +16,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top " aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="../index.html">BIOL361</a>
 
@@ -30,11 +30,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="../index.html" aria-label="Go to package home"><span class="fa fa-home"></span></a></li>
-<li class="nav-item dropdown">
+<li class="active nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Available pages"><span class="fa fas fa-book"></span> Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="../Ornithoptera_richmondia.html">Birdwing map</a></li>
-    <li><a class="dropdown-item" href="../tutorials/Prac1_BIOL361.html">Prac 1 — R and tidyverse basics</a></li>
+<li><a class="dropdown-item" href="../articles/Ornithoptera_richmondia.html">Birdwing map</a></li>
+    <li><a class="dropdown-item" href="../articles/Prac1_BIOL361.html">Prac 1 — R and tidyverse basics</a></li>
+    <li><a class="dropdown-item" href="../articles/Prac2_BIOL361.html">Prac 2 — GIS</a></li>
   </ul>
 </li>
       </ul>
@@ -42,14 +43,20 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
+  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch">
+<li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
+    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
+  </ul>
+</li>
       </ul>
 </div>
 
 
   </div>
 </nav><div class="container template-article">
-
-
 
 
 <div class="row">
@@ -75,8 +82,9 @@ Dorey, University of Wollongong</h4>
       data, and (3) running some simple analyses.
     </div>
     
-<div class="section level2">
-<h2 id="gis-data-basics">GIS data basics<a class="anchor" aria-label="anchor" href="#gis-data-basics"></a>
+<div class="section level2" number="1">
+<h2 id="gis-data-basics">
+<span class="header-section-number">1</span> GIS data basics<a class="anchor" aria-label="anchor" href="#gis-data-basics"></a>
 </h2>
 <p>People are often quite intimidated by working with any data, let
 alone specialised datasets and formats! Even <strong>Excell</strong>
@@ -84,8 +92,10 @@ data formats can be scary if you’re so inclined. So, I’ll try to dispell
 some of your fears in this section as even “complex” data can be
 demistified. Much of the data that we are going to be using isn’t
 <em>actually</em> complex!</p>
-<div class="section level3">
-<h3 id="raster-and-vector-data">Raster and vector data<a class="anchor" aria-label="anchor" href="#raster-and-vector-data"></a>
+<div class="section level3" number="1.1">
+<h3 id="raster-and-vector-data">
+<span class="header-section-number">1.1</span> Raster and vector
+data<a class="anchor" aria-label="anchor" href="#raster-and-vector-data"></a>
 </h3>
 <p>Alright, so I know that I said our data weren’t complex and then I
 threw two random and scary-sounding words at you. Well, don’t stress
@@ -93,8 +103,10 @@ I’ll break it down and also point out that <em>raster</em> and
 <em>vector</em> data are also regularly used by most of us on a daily
 basis! In the shortest terms possible… <em>raster</em> data are
 matrices/tables of data and vector data are simply points and lines.</p>
-<div class="section level4">
-<h4 id="raster-data-matrices-or-tables">Raster data (matrices or tables)<a class="anchor" aria-label="anchor" href="#raster-data-matrices-or-tables"></a>
+<div class="section level4" number="1.1.1">
+<h4 id="raster-data-matrices-or-tables">
+<span class="header-section-number">1.1.1</span> Raster data
+(matrices or tables)<a class="anchor" aria-label="anchor" href="#raster-data-matrices-or-tables"></a>
 </h4>
 <p>One of the most-commonly known raster file formats would be the
 <em>.jpg</em> format. But, many others are commonly used, such as
@@ -105,80 +117,142 @@ if we zoom in, we can start to see the pixels which are actualyl just
 cells of a matrix that are filled with colour! This logo has a
 resolution of 240x277 (66,480) pixels.</p>
 <div class="float">
-<img src="Media_P2_BIOL361/dplyr_zoom.jpg" alt="The dplyr logo with an inset showing the pixels, or the cells of a raster matrix"><div class="figcaption">The <em>dplyr</em> logo with an inset showing
-the pixels, or the cells of a raster matrix</div>
+<img src="Media_P2_BIOL361%2Fdplyr_zoom.jpg" alt="The dplyr logo with an inset showing the pixels, or the cells of a raster matrix"><div class="figcaption"><strong>The <em>dplyr</em> logo with an inset
+showing the pixels, or the cells of a raster matrix</strong></div>
 </div>
 </div>
-<div class="section level4">
-<h4 id="vector-data-points-and-lines">Vector data (points and lines)<a class="anchor" aria-label="anchor" href="#vector-data-points-and-lines"></a>
+<div class="section level4" number="1.1.2">
+<h4 id="vector-data-points-and-lines">
+<span class="header-section-number">1.1.2</span> Vector data (points
+and lines)<a class="anchor" aria-label="anchor" href="#vector-data-points-and-lines"></a>
 </h4>
+<p>Vector data formats are even simpler, I think than raster data
+formats. Once again, you are all familiar with these formats! Probably
+the most-common one would be the <em>.pdf</em> format. But others exist
+like <em>.svg</em> and <em>.shp</em>. Vector file formats <strong>do not
+have pixels</strong> at all, which actually has some benefits. This
+means that we can keep zooming and zooming in on a vector file (just as
+we did above) and we will never see pixels!</p>
+<p>Below, you can see a cutout of a <em>.pdf</em> map file which has
+vector data (letters, numbers, points, and lines) as well as raster data
+embedded (a raster map of elevation). On the left hand side you can see
+that we can zoom into the 18ºS and the lines without any pixels
+appearing. But, on the right hand side, you cna see that the lines of
+the map remain clear but the pixels of the map begin to appear!</p>
+<div class="float">
+<img src="Media_P2_BIOL361%2FVector_zoom.png" alt="Two map figures with insets showing the impact of zooming into vector and raster data."><div class="figcaption"><strong>Two map figures with insets showing the
+impact of zooming into vector and raster data.</strong></div>
 </div>
 </div>
-<div class="section level3">
-<h3 id="projections">Projections<a class="anchor" aria-label="anchor" href="#projections"></a>
+</div>
+<div class="section level3" number="1.2">
+<h3 id="projections">
+<span class="header-section-number">1.2</span> Projections<a class="anchor" aria-label="anchor" href="#projections"></a>
 </h3>
+<p>This is something that is better covered in another topic, but very
+briefly… The earth is more or less a sphere, but quite often we want to
+represent this sphere on a flat surface (a map). Most of the time, if we
+zoom in enough this isn’t really a problem! However, the further out
+that we zoom the more and more problematic this is! For that reason we
+“<strong>project</strong>” that round map onto a flat surface. These are
+“<strong>Projected Coordinate Systems</strong>”.</p>
+<div class="float">
+<img src="Media_P2_BIOL361%2FInShot_20240506_185350804.jpg" alt="Several projected coordiante systems."><div class="figcaption"><strong>Several projected coordiante
+systems.</strong></div>
 </div>
-<div class="section level3">
+<p><a href="https://practicalgeoskills.blogspot.com/2020/04/map-projections-meaning-and-examples.html" class="external-link">Image
+from here</a></p>
+<p>It’s clear that these projection are visually very… diverse. This
+becomes a problem when you’re doing analyses or trying to make maps! In
+this prac we will mostly circumvent this issue by using a
+“<strong>Geographic [3D] Coordinate System</strong>” like WGS84
+(below).</p>
+<div class="float">
+<img src="Media_P2_BIOL361%2FGlobe_Atlantic.png" alt="WGS84 is a 3D geographic coordinate system that does away with projection issues (untill you want to show your map on a flat page again!)."><div class="figcaption"><strong>WGS84 is a 3D geographic coordinate
+system that does away with projection issues (untill you want to show
+your map on a flat page again!).</strong></div>
+</div>
+<p><a href="https://en.wikipedia.org/wiki/World_Geodetic_System" class="external-link">Image
+from here</a></p>
+</div>
+<div class="section level3" number="1.3">
 <h3 id="r-formats">
-<em>R</em> formats<a class="anchor" aria-label="anchor" href="#r-formats"></a>
+<span class="header-section-number">1.3</span> <em>R</em>
+formats<a class="anchor" aria-label="anchor" href="#r-formats"></a>
 </h3>
-<div class="section level4">
+<div class="section level4" number="1.3.1">
 <h4 id="sf-formerly-sp">
-<em>sf</em> (formerly <em>sp</em>)<a class="anchor" aria-label="anchor" href="#sf-formerly-sp"></a>
+<span class="header-section-number">1.3.1</span> <em>sf</em>
+(formerly <em>sp</em>)<a class="anchor" aria-label="anchor" href="#sf-formerly-sp"></a>
 </h4>
 </div>
-<div class="section level4">
+<div class="section level4" number="1.3.2">
 <h4 id="terra-formerly-raster">
-<em>terra</em> (formerly <em>raster</em>)<a class="anchor" aria-label="anchor" href="#terra-formerly-raster"></a>
+<span class="header-section-number">1.3.2</span> <em>terra</em>
+(formerly <em>raster</em>)<a class="anchor" aria-label="anchor" href="#terra-formerly-raster"></a>
 </h4>
 </div>
 </div>
 </div>
-<div class="section level2">
-<h2 id="read-and-plot-data">Read and plot data<a class="anchor" aria-label="anchor" href="#read-and-plot-data"></a>
+<div class="section level2" number="2">
+<h2 id="read-and-plot-data">
+<span class="header-section-number">2</span> Read and plot data<a class="anchor" aria-label="anchor" href="#read-and-plot-data"></a>
 </h2>
-<div class="section level3">
-<h3 id="points">Points<a class="anchor" aria-label="anchor" href="#points"></a>
+<div class="section level3" number="2.1">
+<h3 id="points">
+<span class="header-section-number">2.1</span> Points<a class="anchor" aria-label="anchor" href="#points"></a>
 </h3>
 </div>
-<div class="section level3">
-<h3 id="vector">Vector<a class="anchor" aria-label="anchor" href="#vector"></a>
+<div class="section level3" number="2.2">
+<h3 id="vector">
+<span class="header-section-number">2.2</span> Vector<a class="anchor" aria-label="anchor" href="#vector"></a>
 </h3>
 </div>
-<div class="section level3">
-<h3 id="raster">Raster<a class="anchor" aria-label="anchor" href="#raster"></a>
+<div class="section level3" number="2.3">
+<h3 id="raster">
+<span class="header-section-number">2.3</span> Raster<a class="anchor" aria-label="anchor" href="#raster"></a>
 </h3>
 </div>
 </div>
-<div class="section level2">
-<h2 id="simple-analyses">Simple analyses<a class="anchor" aria-label="anchor" href="#simple-analyses"></a>
+<div class="section level2" number="3">
+<h2 id="simple-analyses">
+<span class="header-section-number">3</span> Simple analyses<a class="anchor" aria-label="anchor" href="#simple-analyses"></a>
 </h2>
-<div class="section level3">
-<h3 id="extract-data">Extract data<a class="anchor" aria-label="anchor" href="#extract-data"></a>
+<div class="section level3" number="3.1">
+<h3 id="extract-data">
+<span class="header-section-number">3.1</span> Extract data<a class="anchor" aria-label="anchor" href="#extract-data"></a>
 </h3>
-<div class="section level4">
-<h4 id="vector-1">Vector<a class="anchor" aria-label="anchor" href="#vector-1"></a>
+<div class="section level4" number="3.1.1">
+<h4 id="vector-1">
+<span class="header-section-number">3.1.1</span> Vector<a class="anchor" aria-label="anchor" href="#vector-1"></a>
 </h4>
 </div>
-<div class="section level4">
-<h4 id="raster-1">Raster<a class="anchor" aria-label="anchor" href="#raster-1"></a>
+<div class="section level4" number="3.1.2">
+<h4 id="raster-1">
+<span class="header-section-number">3.1.2</span> Raster<a class="anchor" aria-label="anchor" href="#raster-1"></a>
 </h4>
 </div>
 </div>
-<div class="section level3">
-<h3 id="section"></h3>
+<div class="section level3" number="3.2">
+<h3 id="section">
+<span class="header-section-number">3.2</span> <a class="anchor" aria-label="anchor" href="#section"></a>
+</h3>
 </div>
 </div>
-<div class="section level2">
-<h2 id="whats-coming-next-week">What’s coming next week?<a class="anchor" aria-label="anchor" href="#whats-coming-next-week"></a>
+<div class="section level2" number="4">
+<h2 id="whats-coming-next-week">
+<span class="header-section-number">4</span> What’s coming next
+week?<a class="anchor" aria-label="anchor" href="#whats-coming-next-week"></a>
 </h2>
 <p>Next week, we will be extending some of what we learnt here in order
 to read in GIS data, make some maps, and do some simple analyses.</p>
 </div>
-<div class="section level2">
-<h2 id="packages-used-today">Packages used today<a class="anchor" aria-label="anchor" href="#packages-used-today"></a>
+<div class="section level2" number="5">
+<h2 id="packages-used-today">
+<span class="header-section-number">5</span> Packages used
+today<a class="anchor" aria-label="anchor" href="#packages-used-today"></a>
 </h2>
-<p><img src="Media_P2_BIOL361/dplyr.png" width="200"><img src="Media_P2_BIOL361/readr.png" width="200"><img src="Media_P2_BIOL361/magrittr.png" width="200"><img src="Media_P2_BIOL361/stringr.png" width="200"></p>
+<p><img src="Media_P2_BIOL361%2Fdplyr.png" width="200"><img src="Media_P2_BIOL361%2Freadr.png" width="200"><img src="Media_P2_BIOL361%2Fmagrittr.png" width="200"><img src="Media_P2_BIOL361%2Fstringr.png" width="200"></p>
 <p>Plus the default R packages, <strong>base</strong> and
 <strong>utils</strong></p>
 </div>

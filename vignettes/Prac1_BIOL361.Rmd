@@ -36,6 +36,8 @@ library(dplyr)
 options(width = 60)
 matrix(runif(100), ncol = 20)
 demonstratorVersion = FALSE
+#| include: FALSE
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
 
 ```
 
@@ -80,7 +82,7 @@ In my tutorials you will notice that I tend to use **tidyverse** packages — su
 I will be explicit when I am using a function from a certain function. When you see two columns, like `dplyr::select()`, know that I'm calling the package **dplyr** and the function *select*. Some *functions* can be called by more than one **package**; so this is actually really good practice! I also find that it makes it easier for me to not make mistakes and to better-understand what I'm doing. 
 </div>
 
-# Getting ready with *R* and *RStudio* {.tabset}
+# Getting ready with *R* and *RStudio* {.tabset .tabset-pills}
 
 Your computers should already have **R** and **RStudio** installed. If they do not, or you are using a personal computer, feel free to follow the steps below to prepare yourself for the week 2 practicals, where we will dive in pretty quickly.
 

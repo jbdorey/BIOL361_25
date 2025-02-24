@@ -78,7 +78,7 @@ This is something that is better covered in another topic, but very briefly... T
 
 It's clear that these projection are visually very... diverse. This becomes a problem when you're doing analyses or trying to make maps! In this prac we will mostly circumvent this issue by using a "**Geographic [3D] Coordinate System**" like WGS84 (below).
 
-![**Several projected coordiante systems.**](Media_P2_BIOL361/Globe_Atlantic.png) 
+![**WGS84 is a 3D geographic coordinate system that does away with projection issues (untill you want to show your map on a flat page again!).**](Media_P2_BIOL361/Globe_Atlantic.png) 
 
 [Image from here](https://en.wikipedia.org/wiki/World_Geodetic_System)
 
