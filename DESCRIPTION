@@ -30,6 +30,8 @@ Suggests:
     pkgdown,
     plotly,
     prettydoc,
+    styler,
+    kableExtra,
     purrr,
     R.utils,
     rgnparser,
