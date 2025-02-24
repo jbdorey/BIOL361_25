@@ -35,9 +35,12 @@ demonstratorVersion = FALSE
 
 `r if(demonstratorVersion == TRUE){"\\\n\n**THIS IS A DEMONSTRATOR ONLY VERSION**\\\n"}`
 
-```{r secretRootPath, include=FALSE}
-# Set the RootPath to the prac folder
-RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac2"
+```{r setSECRETRootPath, include=FALSE,  eval=TRUE}
+  # Set the RootPath to your folder
+RootPath <- tempdir()
+  # You can then set this as the project's working directory. 
+  # This is where R will first look to find 
+  # or save data as a default
 setwd(RootPath)
 ```
 
@@ -58,6 +61,8 @@ One of the most-commonly known raster file formats would be the *.jpg* format. B
 ### Vector data (points and lines)
 
 Vector data formats are even simpler, I think than raster data formats. Once again, you are all familiar with these formats! Probably the most-common one would be the *.pdf* format. But others exist like *.svg* and *.shp*. Vector file formats **do not have pixels** at all, which actually has some benefits. This means that we can keep zooming and zooming in on a vector file (just as we did above) and we will never see pixels! 
+
+![The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix](Media_P2_BIOL361/Vector_zoom.png)
 
 ## Projections
 

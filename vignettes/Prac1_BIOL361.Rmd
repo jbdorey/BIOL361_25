@@ -25,6 +25,7 @@ abstract: "This practical class should not be particularly onerous. Today is mos
 # markdown packages
 library(rmarkdown)
 library(formatR)
+library(styler)
 library(kableExtra)
 
 # Load core packages
@@ -38,9 +39,12 @@ demonstratorVersion = FALSE
 
 `r if(demonstratorVersion == TRUE){"\\\n\n**THIS IS A DEMONSTRATOR ONLY VERSION**\\\n"}`
 
-```{r secretRootPath, include=FALSE}
-# Set the RootPath to the prac folder
-RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1"
+```{r setSECRETRootPath, include=FALSE,  eval=TRUE}
+  # Set the RootPath to your folder
+RootPath <- tempdir()
+  # You can then set this as the project's working directory. 
+  # This is where R will first look to find 
+  # or save data as a default
 setwd(RootPath)
 ```
 
@@ -128,6 +132,7 @@ Did you notice all of the hashtags? These are comments and **R** will ignore the
 Let us begin by telling **R** where our working directory (the folder that you made above) actually is. My "*BIOL361_pracs_2024*" folder is found at the end of the path:
 
 "*/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1*" (see again, no spaces!). So, I can run the below:
+
 
 ```{r setRootPath, include=TRUE,  eval=FALSE}
   # Set the RootPath to your folder
