@@ -70,6 +70,10 @@ Below, you can see a cutout of a *.pdf* map file which has vector data (letters,
 
 ## Projections
 
+This is something that is better covered in another topic, but very briefly... The earth is more or less a sphere, but quite often we want to represent this sphere on a flat surface (a map). Most of the time, if we zoom in enough this isn't really a problem! However, the further out that we zoom the more and more problematic this is! For that reason we "project" that round map onto a flat surface 
+
+![Several map projections.](Media_P2_BIOL361/InShot_20240506_185350804.jpg) [Image from here](https://practicalgeoskills.blogspot.com/2020/04/map-projections-meaning-and-examples.html)
+
 ## *R* formats
 
 ### *sf* (formerly *sp*)
