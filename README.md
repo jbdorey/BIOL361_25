@@ -1,7 +1,11 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## **BIOL361** 2025 — Conservation Biology; University of Wollongong
+## **BIOL361** 2025
+
+### Conservation Biology
+
+### University of Wollongong
 
 #### **Overview**
 
