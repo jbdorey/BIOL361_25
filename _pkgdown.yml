@@ -9,7 +9,6 @@ template:
 development:
   mode: auto
 navbar:
-  components:
     left:
        - icon: fa-home
          href: index.html

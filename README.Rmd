@@ -7,11 +7,6 @@ urlcolor: blue
 editor_options: 
   markdown: 
     wrap: 80
-
-vignette: >
-  %\VignetteIndexEntry{BIOL361_25}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 <!-- badges: start -->
