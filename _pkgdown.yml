@@ -16,4 +16,4 @@ navbar:
       -  text: Birdwing map
          href: Ornithoptera_richmondia.html
       -  text: Prac 1 — R and tidyverse basics
-         href: Prac1_BIOL361.html
+         href: tutorials/Prac1_BIOL361.html

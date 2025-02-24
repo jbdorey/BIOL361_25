@@ -27,7 +27,7 @@ library(kableExtra)
 # Load core packages
 library(dplyr)
 
-options(width = 60)
+
 matrix(runif(100), ncol = 20)
 demonstratorVersion = FALSE
 
@@ -51,9 +51,9 @@ Alright, so I know that I said our data weren't complex and then I threw two ran
 
 ### Raster data (matrices or tables)
 
-One of the most-commonly known raster file formats would be the *.jpg* format. But, many others are commonly used, such as *.tiff*, *.png*, and *.gif*. You might be wondering "How on Earth is that a matrix or table??". And loo, fair enough. But take a look at the below dplyr logo. This is a *.png* file, and if we zoom in, we can start to see the pixels which are actualyl just cells of a matrix that are filled with colour! 
+One of the most-commonly known raster file formats would be the *.jpg* format. But, many others are commonly used, such as *.tiff*, *.png*, and *.gif*. You might be wondering "How on Earth is that a matrix or table??". And loo, fair enough. But take a look at the below dplyr logo. This is a *.png* file, and if we zoom in, we can start to see the pixels which are actualyl just cells of a matrix that are filled with colour! This logo has a resolution of 240x277 (66,480) pixels.
 
-![The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix](Media_P2_BIOL361/dplyr_zoom.pdf){width="355px",width="277px"}
+![The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix](Media_P2_BIOL361/dplyr_zoom.jpg)
 
 
 ## Projections
@@ -96,9 +96,9 @@ Next week, we will be extending some of what we learnt here in order to read in 
 
 # Packages used today
 
-![](Media_P1_BIOL361/dplyr.png){width="200px"} 
-![](Media_P1_BIOL361/readr.png){width="200px"}
-![](Media_P1_BIOL361/magrittr.png){width="200px"} 
-![](Media_P1_BIOL361/stringr.png){width="200px"}
+![](Media_P2_BIOL361/dplyr.png){width="200px"} 
+![](Media_P2_BIOL361/readr.png){width="200px"}
+![](Media_P2_BIOL361/magrittr.png){width="200px"} 
+![](Media_P2_BIOL361/stringr.png){width="200px"}
 
 Plus the default R packages, **base** and **utils** 
