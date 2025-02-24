@@ -4,6 +4,7 @@ template:
   bootstrap: 5
   bootswatch: minty
   light-switch: true
+  assets: assets
 development:
   mode: auto
 navbar:

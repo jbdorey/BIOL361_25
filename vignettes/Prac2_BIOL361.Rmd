@@ -58,7 +58,7 @@ Alright, so I know that I said our data weren't complex and then I threw two ran
 
 One of the most-commonly known raster file formats would be the *.jpg* format. But, many others are commonly used, such as *.tiff*, *.png*, and *.gif*. You might be wondering "How on Earth is that a matrix or table??". And loo, fair enough. But take a look at the below dplyr logo. This is a *.png* file, and if we zoom in, we can start to see the pixels which are actualyl just cells of a matrix that are filled with colour! This logo has a resolution of 240x277 (66,480) pixels.
 
-![The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix](Media_P2_BIOL361/dplyr_zoom.jpg)
+![**The *dplyr* logo with an inset showing the pixels, or the cells of a raster matrix**](Media_P2_BIOL361/dplyr_zoom.jpg)
 
 ### Vector data (points and lines)
 
@@ -66,13 +66,22 @@ Vector data formats are even simpler, I think than raster data formats. Once aga
 
 Below, you can see a cutout of a *.pdf* map file which has vector data (letters, numbers, points, and lines) as well as raster data embedded (a raster map of elevation). On the left hand side you can see that we can zoom into the 18ºS and the lines without any pixels appearing. But, on the right hand side, you cna see that the lines of the map remain clear but the pixels of the map begin to appear! 
 
-![Two map figures with insets showing the impact of zooming into vector and raster data.](Media_P2_BIOL361/Vector_zoom.png)
+![**Two map figures with insets showing the impact of zooming into vector and raster data.**](Media_P2_BIOL361/Vector_zoom.png)
 
 ## Projections
 
-This is something that is better covered in another topic, but very briefly... The earth is more or less a sphere, but quite often we want to represent this sphere on a flat surface (a map). Most of the time, if we zoom in enough this isn't really a problem! However, the further out that we zoom the more and more problematic this is! For that reason we "project" that round map onto a flat surface 
+This is something that is better covered in another topic, but very briefly... The earth is more or less a sphere, but quite often we want to represent this sphere on a flat surface (a map). Most of the time, if we zoom in enough this isn't really a problem! However, the further out that we zoom the more and more problematic this is! For that reason we "**project**" that round map onto a flat surface. These are "**Projected Coordinate Systems**".
 
-![Several map projections.](Media_P2_BIOL361/InShot_20240506_185350804.jpg) [Image from here](https://practicalgeoskills.blogspot.com/2020/04/map-projections-meaning-and-examples.html)
+![**Several projected coordiante systems.**](Media_P2_BIOL361/InShot_20240506_185350804.jpg) 
+
+[Image from here](https://practicalgeoskills.blogspot.com/2020/04/map-projections-meaning-and-examples.html)
+
+It's clear that these projection are visually very... diverse. This becomes a problem when you're doing analyses or trying to make maps! In this prac we will mostly circumvent this issue by using a "**Geographic [3D] Coordinate System**" like WGS84 (below).
+
+![**Several projected coordiante systems.**](Media_P2_BIOL361/Globe_Atlantic.png) 
+
+[Image from here](https://en.wikipedia.org/wiki/World_Geodetic_System)
+
 
 ## *R* formats
 
