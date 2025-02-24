@@ -99,7 +99,7 @@ If **R** is NOT installed on your computer already, we will go ahead and do that
 
 ## Install *RStudio*
 
-**R** is a command-land programming language and **R**, by itself is horribly ugly and I don't like the idea of working in it directly. For this reason, most users will use R within a much nicer interface program, called **RStudio**. Download the free version of [RSTudio](https://posit.co/download/rstudio-desktop/). Now, when both programs are installed, you can simply open up RStudio and get coding!
+**R** is a command-land programming language and **R**, by itself is horribly ugly and I don't like the idea of working in it directly. For this reason, most users will use R within a much nicer interface program, called **RStudio**. Download the free version of [RStudio](https://posit.co/download/rstudio-desktop/). Now, when both programs are installed, you can simply open up RStudio and get coding!
 
 We are not going to do much with **R** today, don't worry, but I'd like to get you a little acquainted and at least start installing some packages in **R** so that we are ready for the following weeks.
 
@@ -321,11 +321,6 @@ That's an easy way to quickly look at your data and identify what it looks like!
 `r if(demonstratorVersion == TRUE){"** Because they don't have sex specified in the dataset.**"}`
 
 ## Make histograms prettier {.tabset}
-
-<div class="alert alert-info">
-  <strong> Attention:</strong> <br>
-This section has three tabs; 5.2.1–5.2.3.
-</div>
 
 ### Colour by sex
 
