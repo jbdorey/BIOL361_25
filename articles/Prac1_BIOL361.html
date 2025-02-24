@@ -170,9 +170,9 @@ better-understand what I’m doing.</p>
 </div>
 </div>
 <div class="section level2" number="1">
-<h2 class="tabset" id="getting-ready-with-r-and-rstudio">
-<span class="header-section-number">1</span> Getting
-ready with <em>R</em> and <em>RStudio</em><a class="anchor" aria-label="anchor" href="#getting-ready-with-r-and-rstudio"></a>
+<h2 class="tabset tabset-pills" id="getting-ready-with-r-and-rstudio">
+<span class="header-section-number">1</span> Getting ready with <em>R</em> and
+<em>RStudio</em><a class="anchor" aria-label="anchor" href="#getting-ready-with-r-and-rstudio"></a>
 </h2>
 <p>Your computers should already have <strong>R</strong> and
 <strong>RStudio</strong> installed. If they do not, or you are using a
@@ -353,19 +353,19 @@ also look at it once it’s read in. To do this, we will use the tidyverse
 package, <strong>readr</strong>.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="co"># read in the data using readr</span></span>
-<span><span class="va">HylaeusData</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="st">"SuppCollectionInfo_7Aug2023.csv"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## New names:</span></span>
-<span><span class="co">## <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">84</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">42</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span></span></span>
-<span><span class="co">## <span style="color: #00BBBB;">────────────────────────────────────</span> <span style="font-weight: bold;">Delimiter:</span> "," <span style="color: #BB0000;">chr</span></span></span>
-<span><span class="co">## (31): recordNumber, otherCatalogNumbers, catalogNum... <span style="color: #00BB00;">dbl</span></span></span>
-<span><span class="co">## (7): year, month, day, individualCount, coordinate... <span style="color: #BBBB00;">lgl</span></span></span>
-<span><span class="co">## (2): ...27, ...42 <span style="color: #0000BB;">date</span> (1): eventDate <span style="color: #0000BB;">time</span> (1): eventTime</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification</span></span>
-<span><span class="co">## for this data. <span style="color: #00BBBB;">ℹ</span> Specify the column types or set</span></span>
-<span><span class="co">## `show_col_types = FALSE` to quiet this message.</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">•</span> `` -&gt; `...27`</span></span>
-<span><span class="co">## <span style="color: #00BBBB;">•</span> `` -&gt; `...42`</span></span></code></pre>
+<span><span class="va">HylaeusData</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="st">"SuppCollectionInfo_7Aug2023.csv"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; New names:</span></span>
+<span><span class="co">#&gt; <span style="font-weight: bold;">Rows: </span><span style="color: #0000BB;">84</span> <span style="font-weight: bold;">Columns: </span><span style="color: #0000BB;">42</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">──</span> <span style="font-weight: bold;">Column specification</span></span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">────────────────────────────────────</span> <span style="font-weight: bold;">Delimiter:</span> "," <span style="color: #BB0000;">chr</span></span></span>
+<span><span class="co">#&gt; (31): recordNumber, otherCatalogNumbers, catalogNum... <span style="color: #00BB00;">dbl</span></span></span>
+<span><span class="co">#&gt; (7): year, month, day, individualCount, coordinate... <span style="color: #BBBB00;">lgl</span></span></span>
+<span><span class="co">#&gt; (2): ...27, ...42 <span style="color: #0000BB;">date</span> (1): eventDate <span style="color: #0000BB;">time</span> (1): eventTime</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">ℹ</span> Use `spec()` to retrieve the full column specification</span></span>
+<span><span class="co">#&gt; for this data. <span style="color: #00BBBB;">ℹ</span> Specify the column types or set</span></span>
+<span><span class="co">#&gt; `show_col_types = FALSE` to quiet this message.</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...27`</span></span>
+<span><span class="co">#&gt; <span style="color: #00BBBB;">•</span> `` -&gt; `...42`</span></span></code></pre></div>
 <p>Now that we have read it in, you can view the data either by simply
 running “<code>HylaeusData</code>” or “<code>View(HylaeusData)</code>”.
 You can also have a scroll below of the dataset.</p>
@@ -11554,7 +11554,7 @@ going to do below. However, they would be (a) slower, (b) less
 reproducible, and (c) more prone to error. So, let’s go ahead and do
 them in <strong>R</strong>! Let’s begin with a simple function to
 <em>filter</em> our dataset to only include <em>male</em> specimens.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># We can create a new R dataset, without over-writing the previous one as below</span></span>
 <span><span class="va">HylaeusData_malesOnly</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"male"</span><span class="op">)</span></span></code></pre></div>
@@ -11577,7 +11577,7 @@ to do in Excel. One of the powerful parts of <strong>R</strong> coding
 is that you can do really complex things really, really, easily! Why
 don’t we try to do a more-complex filtering command in
 <strong>R</strong>?</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Let's filter based on two out of three countries (French Polynesia, Micronesia, and Fiji)</span></span>
 <span><span class="va">HylaeusData_FPandM</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="co"># Use the %in% command to ask for ANY of the text strings *in* the country column</span></span>
@@ -14560,7 +14560,7 @@ better. You might do this to not share all of the data, or to reduce the
 size of a dataset (especially when it gets in the millions of rows —
 which, by the way, <strong>Excel</strong> will <strong>not</strong>
 tolerate).</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusData_spLatLon</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">decimalLatitude</span>, <span class="va">decimalLongitude</span><span class="op">)</span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
@@ -15518,7 +15518,7 @@ some annoying find-replace to modify it. What a pain! This is much
 easier in <strong>R</strong>. Let’s <em>mutate</em> up a new column to
 extract the genus name from the <em>scientificName</em> column in the
 last dataset that we made!</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusData_spLL_G</span>  <span class="op">&lt;-</span> <span class="va">HylaeusData_spLatLon</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html" class="external-link">str_extract</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">scientificName</span>, </span>
 <span>                                             pattern <span class="op">=</span> <span class="st">"[A-Z][a-z]+"</span><span class="op">)</span>,</span>
@@ -16759,7 +16759,7 @@ these same data!</p>
 </h3>
 <p>We will start with a simple summary of the number of male and female
 bees in the dataset…</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusHistogram</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16768,12 +16768,11 @@ bees in the dataset…</p>
 <span>            <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">sex</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># See that? ggplot2 uses a "+" to add new elements to their plots! This is quite </span></span>
 <span>    <span class="co"># useful and easy to code actually! </span></span>
-<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
-<span><span class="co">## Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
-<span><span class="co">## `pad`</span></span></code></pre>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span>  <span class="co"># Now view the plot</span></span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
+<span><span class="co">#&gt; `pad`</span></span>
+<span>  <span class="co"># Now view the plot</span></span>
 <span><span class="va">HylaeusHistogram</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist-1.png" width="672"></p>
 <p>That’s an easy way to quickly look at your data and identify what it
@@ -16802,7 +16801,7 @@ no? If we want to (1) save a plot object, like
 <code>HylaeusHist_pretty</code>, and (2) view it at the same time, we
 can also surround the whole thing in brackets as below — <em>just a
 little tip :)</em></p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16812,10 +16811,10 @@ little tip :)</em></p>
 <span>    <span class="co"># See that? ggplot2 uses a "+" to add new elements to their plots! This is quite </span></span>
 <span>    <span class="co"># useful and easy to code actually! </span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> </span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
-<span><span class="co">## Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
-<span><span class="co">## `pad`</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
+<span><span class="co">#&gt; `pad`</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist_sex-1.png" width="672"></p>
 </div>
 <div class="section level4" number="5.2.2">
@@ -16825,7 +16824,7 @@ little tip :)</em></p>
 <p>That’s great, but we relied on <strong>R</strong> to choose colours
 for us. That’s fine, but sometimes we really want to make thigns
 prettier still!</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16837,10 +16836,10 @@ prettier still!</p>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_histogram.html" class="external-link">geom_histogram</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># Let's use a MANUAL colour scale</span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"grey"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
-<span><span class="co">## Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
-<span><span class="co">## `pad`</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
+<span><span class="co">#&gt; `pad`</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist_sex_manual-1.png" width="672"></p>
 </div>
 <div class="section level4" number="5.2.3">
@@ -16849,7 +16848,7 @@ prettier still!</p>
 </h4>
 <p>Wonderful! But what about that gross default background?</p>
 <p><strong>Classic theme</strong></p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16863,15 +16862,15 @@ prettier still!</p>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"grey"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># Let's use a classic theme</span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
-<span><span class="co">## Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
-<span><span class="co">## `pad`</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
+<span><span class="co">#&gt; `pad`</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist_sex_manual_classic-1.png" width="672"></p>
 <p><strong>Dark theme</strong></p>
 <p>I don’t know why you’d ever use this… unless for a dark mode
 website?</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16885,14 +16884,14 @@ website?</p>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"grey"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># Let's use a classic theme</span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_dark</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
-<span><span class="co">## Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
-<span><span class="co">## `pad`</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
+<span><span class="co">#&gt; `pad`</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist_sex_manual_dark-1.png" width="672"></p>
 <p><strong>Linedraw theme</strong></p>
 <p>I have never used this one before either, but here you go!</p>
-<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16906,10 +16905,10 @@ website?</p>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_fill_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"grey"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># Let's use a classic theme</span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_linedraw</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
-<span><span class="co">## Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
-<span><span class="co">## `pad`</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning in ggplot2::geom_histogram(stat = "count"):</span></span>
+<span><span class="co">#&gt; Ignoring unknown parameters: `binwidth`, `bins`, and</span></span>
+<span><span class="co">#&gt; `pad`</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist_sex_manual_Linedraw-1.png" width="672"></p>
 <p><strong>There are plenty of themes to choose from</strong> — <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">see here</a>
 — but they are all completely customisable with further code that we
@@ -16923,7 +16922,7 @@ won’t touch on here.</p>
 <p>We could also look at some line graphs of when the specimens were
 collected! This is cool because <strong>R</strong> is able to translate
 the date format into a meaningful X-axis.</p>
-<div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16933,16 +16932,16 @@ the date format into a meaningful X-axis.</p>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html" class="external-link">geom_line</a></span><span class="op">(</span>stat <span class="op">=</span> <span class="st">"count"</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># Let's use a classic theme</span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: Removed 10 rows containing non-finite outside the scale</span></span>
-<span><span class="co">## range (`stat_count()`).</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 10 rows containing non-finite outside the scale</span></span>
+<span><span class="co">#&gt; range (`stat_count()`).</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggline-1.png" width="672"></p>
 <p>Cool, but what if we want to also see when the males and the females
 were collected? Well, we could <code>group</code> these in
 <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">ggplot2::aes()</a></code>, or, we could take advantage of
 <strong>ggplot2</strong>’s simple method of adding (<code>+</code>) in
 new elements! So, let’s add in some points based on sex!</p>
-<div class="sourceCode" id="cb27"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16963,11 +16962,11 @@ new elements! So, let’s add in some points based on sex!</p>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html" class="external-link">scale_colour_manual</a></span><span class="op">(</span>values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#E69F00"</span>, <span class="st">"#56B4E9"</span>, <span class="st">"grey"</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
 <span>    <span class="co"># Let's use a classic theme</span></span>
 <span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_classic</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## Warning: Removed 10 rows containing non-finite outside the scale</span></span>
-<span><span class="co">## range (`stat_count()`).</span></span>
-<span><span class="co">## Removed 10 rows containing non-finite outside the scale</span></span>
-<span><span class="co">## range (`stat_count()`).</span></span></code></pre>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt; Warning: Removed 10 rows containing non-finite outside the scale</span></span>
+<span><span class="co">#&gt; range (`stat_count()`).</span></span>
+<span><span class="co">#&gt; Removed 10 rows containing non-finite outside the scale</span></span>
+<span><span class="co">#&gt; range (`stat_count()`).</span></span></code></pre></div>
 <p><img src="Prac1_BIOL361_files/figure-html/ggline_points-1.png" width="672"></p>
 <blockquote>
 <p><strong>Q5:</strong> Make a line plot where eventDate is (1) grouped
