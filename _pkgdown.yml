@@ -2,7 +2,6 @@ url: https://jbdorey.github.io/BIOL361_25/
 title: "BIOL361"
 template:
   bootstrap: 5
-destination: docs
 development:
   mode: auto
 navbar:
