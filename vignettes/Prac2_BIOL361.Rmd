@@ -83,7 +83,9 @@ It's clear that these projection are visually very... diverse. This becomes a pr
 [Image from here](https://en.wikipedia.org/wiki/World_Geodetic_System)
 
 
-## *R* formats
+## *R* formats and packages
+
+Different GIS programs tend to have different file formats. **ArcMap** is the most cagey (as it's a proprietary program) and so has a bunch of annoying proprietary file formats. **QGIS** is open source and tends to use some simpler formats (yay!). **R** is more-or-less able to open any of those formats and read them in (even more yay!). Let's install the needed packages and have a very short discussion of their [preferred] formats.
 
 ### *sf* (formerly *sp*)
 

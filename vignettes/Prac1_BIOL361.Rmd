@@ -20,11 +20,6 @@ abstract: "This practical class should not be particularly onerous. Today is mos
 \n
 
   **R** is a very useful programming language that's open access and widely used in science. We don't expect you to become a master by the end of this topic or to understand everything that you're doing right now. But, by helping you get started and giving you robust example code we hope to enable you to succeed using **R** in the future, should you chose to pick it up more consistently."
-  
-vignette: >
-  %\VignetteIndexEntry{BIOL361 Prac 1 — R and tidyverse basics}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteEncoding{UTF-8}
 ---
 
 ```{r libraryChunk, load-packages, include=FALSE}
