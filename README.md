@@ -3,45 +3,24 @@
 
 ## **BIOL361** 2025 — Conservation Biology; University of Wollongong
 
+#### **Overview**
+
 This is a simple GitHub page to host some activities for the BIOL361
-cohort
+cohort. It includes the Weeks [four](DoreyPrac1/Prac1_BIOL361.html) and
+five practicals by James Dorey and some associated files, like the
+interactive [Richmond Birdwing
+map](https://jbdorey.github.io/BIOL361_25/Ornithoptera%20richmondia.html).
 
 ## Directory
 
 - [Birdwing butterfly
   map](https://jbdorey.github.io/BIOL361_25/Ornithoptera%20richmondia.html)
 
-### Dependencies
-
-- Describe any prerequisites, libraries, OS version, etc., needed before
-  installing program.
-- ex. Windows 10
-
-### Installing
-
-- How/where to download your program
-- Any modifications needed to be made to files/folders
-
-### Executing program
-
-- How to run the program
-- Step-by-step bullets
-
-<!-- -->
-
-    code blocks for commands
-
-## Help
-
-Any advise for common problems or issues.
-
-    command to run if program contains helper info
-
 ## Authors
 
 Contributors names and contact info
 
-ex. Dr James Dorey ex.
+Dr James Dorey
 [@jamesbeedorey.bsky.social](%5Bhttps://twitter.com/dompizzie%5D(https://bsky.app/profile/jamesbeedorey.bsky.social))
 
 ## Version History
