@@ -13,7 +13,7 @@ output:
     fig_caption: true
     latex_engine: xelatex
 urlcolor: blue
-abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**. This will involve (1) learning some GIS data basics, (2) reading in GIS data, (3) plotting those data, and (4) running some simple analyses."
+abstract: "Today we will go through some geographical information system (GIS) code and analyses in **R**. This will involve (1) learning some GIS data basics, (2) reading in and plot GIS data, and (3) running some simple analyses."
 ---
 
 ```{r libraryChunk, load-packages, include=FALSE}
@@ -41,14 +41,41 @@ RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github
 setwd(RootPath)
 ```
 
+# GIS data basics
 
-# Read in data
+## Raster and vector data
+
+## Projections
+
+## *R* formats
+
+### *sf* (formerly *sp*)
+
+### *terra* (formerly *raster*)
+
+```{r}
+TEST <- readr::read_csv("/Users/jamesdorey/Desktop/Uni/My_papers/Pollen_equivelance/R_workflow/Table_outputs/1.4_FilteredAusOccurrences.csv")
+
+```
+
+# Read and plot data
+
+## Points
+
+## Vector
+
+## Raster
 
 
+# Simple analyses
 
+## Extract data
 
+### Vector
 
+### Raster
 
+## 
 
 
 
