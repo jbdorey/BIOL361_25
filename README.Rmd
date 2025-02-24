@@ -20,8 +20,14 @@ vignette: >
 
 <!-- badges: end -->
 
-```{r setup, include=FALSE}
+```{r websiteSetUp, eval = FALSE}
+  # Do this only once
+#usethis::use_pkgdown()
+pkgdown::build_site()
 usethis::use_github_action("pkgdown")
+```
+
+```{r setup, include=FALSE}
 library(readr)
 ```
 
