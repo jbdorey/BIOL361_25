@@ -4,8 +4,6 @@ title: "BIOL361_25"
 
 template:
   bootstrap: 5
-  params:
-    bootswatch: lumen
     
 development:
   mode: auto
