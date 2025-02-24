@@ -21,6 +21,7 @@ vignette: >
 <!-- badges: end -->
 
 ```{r setup, include=FALSE}
+usethis::use_github_action("pkgdown")
 library(readr)
 ```
 
