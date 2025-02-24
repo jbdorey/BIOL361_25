@@ -5,7 +5,7 @@ editor_options:
     wrap: 80
 
 vignette: >
-  %\VignetteIndexEntry{BIOL361}
+  %\VignetteIndexEntry{BIOL361_25}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
