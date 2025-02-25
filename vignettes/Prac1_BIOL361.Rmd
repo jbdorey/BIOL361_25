@@ -318,18 +318,13 @@ That's an easy way to quickly look at your data and identify what it looks like!
 
 `r if(demonstratorVersion == TRUE){"** Because they don't have sex specified in the dataset.**"}`
 
-## Make histograms prettier {.tabset}
-
-<div class="alert alert-info">
-  <strong> Attention:</strong> <br>
-This section has three tabs; 5.2.1–5.2.3.
-</div>
+## Make histograms prettier 
 
 ### Colour by sex
 
 We can also make our histograms a bit prettier! That would be nice, no? If we want to (1) save a plot object, like `HylaeusHist_pretty`, and (2) view it at the same time, we can also surround the whole thing in brackets as below — *just a little tip :)*
 
-```{r ggHist_sex}
+```{r ggHist_sex, message = FALSE}
 (HylaeusHist_pretty <- ggplot2::ggplot(
               # You need to tell ggplot2 which dataset to use
             data = HylaeusData,
@@ -346,7 +341,7 @@ We can also make our histograms a bit prettier! That would be nice, no? If we wa
 
 That's great, but we relied on **R** to choose colours for us. That's fine, but sometimes we really want to make thigns prettier still! 
 
-```{r ggHist_sex_manual}
+```{r ggHist_sex_manual, message = FALSE}
 (HylaeusHist_pretty <- ggplot2::ggplot(
               # You need to tell ggplot2 which dataset to use
             data = HylaeusData,
@@ -368,7 +363,7 @@ Wonderful! But what about that gross default background?
 
 **Classic theme**
 
-```{r ggHist_sex_manual_classic}
+```{r ggHist_sex_manual_classic, message = FALSE}
 (HylaeusHist_pretty <- ggplot2::ggplot(
               # You need to tell ggplot2 which dataset to use
             data = HylaeusData,
@@ -389,7 +384,7 @@ Wonderful! But what about that gross default background?
 
 I don't know why you'd ever use this... unless for a dark mode website?
 
-```{r ggHist_sex_manual_dark}
+```{r ggHist_sex_manual_dark, message = FALSE}
 (HylaeusHist_pretty <- ggplot2::ggplot(
               # You need to tell ggplot2 which dataset to use
             data = HylaeusData,
@@ -410,7 +405,7 @@ I don't know why you'd ever use this... unless for a dark mode website?
 
 I have never used this one before either, but here you go! 
 
-```{r ggHist_sex_manual_Linedraw}
+```{r ggHist_sex_manual_Linedraw, message = FALSE}
 (HylaeusHist_pretty <- ggplot2::ggplot(
               # You need to tell ggplot2 which dataset to use
             data = HylaeusData,

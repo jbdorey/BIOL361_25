@@ -514,7 +514,7 @@ utils::download.file(url = "https://raw.githubusercontent.com/jbdorey/BIOL361_25
 
 Read in the data and apply some filtering 
 
-```{r InitialFlags, include=TRUE, message = FALSE}
+```{r InitialFlags, include=TRUE, message = FALSE, warning = FALSE}
 
 # Read data and run initial flags
 RichmondBirdwingData <- readr::read_csv("records-2025-02-20/records-2025-02-20.csv",
