@@ -15,7 +15,7 @@ vignette: >
 
 Use a temporary working directory 
 
-```{r setWD, include=TRUE}
+```{r setWD, include=TRUE, message = FALSE}
 setwd(tempdir())
 library(magrittr)
 library(BeeBDC)
@@ -505,7 +505,7 @@ return(mdatabaseSpp)
 
 Access stored and downloaded data 
 
-```{r downloadData, include=TRUE}
+```{r downloadData, include=TRUE, message = FALSE}
   # Download data
 utils::download.file(url = "https://raw.githubusercontent.com/jbdorey/BIOL361_25/main/vignettes/records-2025-02-20/records-2025-02-20.csv",
                      destfile = "records-2025-02-20.csv",
@@ -514,7 +514,7 @@ utils::download.file(url = "https://raw.githubusercontent.com/jbdorey/BIOL361_25
 
 Read in the data and apply some filtering 
 
-```{r InitialFlags, include=TRUE}
+```{r InitialFlags, include=TRUE, message = FALSE}
 
 # Read data and run initial flags
 RichmondBirdwingData <- readr::read_csv("records-2025-02-20/records-2025-02-20.csv",
