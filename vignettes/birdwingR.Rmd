@@ -10,9 +10,26 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+Use a temporary working directory 
+
 ```{r setWD, include=TRUE}
-setwd("/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25")
+setwd(tempdir())
+library(magrittr)
+library(BeeBDC)
+library(dplyr)
+library(bdc)
 ```
+
+Access stored and downloaded data 
+
+```{r downloadData, include=TRUE}
+  # Download data
+utils::download.file(url = "https://raw.githubusercontent.com/jbdorey/BIOL361_25/main/vignettes/records-2025-02-20/records-2025-02-20.csv",
+                     destfile = "records-2025-02-20.csv",
+                     method="curl")
+```
+
+Read in the data and apply some filtering 
 
 ```{r InitialFlags, include=TRUE}
 
@@ -119,16 +136,16 @@ RichmondBirdwingData <- RichmondBirdwingData %>%
                      filterClean = FALSE) 
 
 table(RichmondBirdwingData$scientificName)
-
-
-RichmondBirdwingData %>% 
-  BeeBDC::interactiveMapR(outPath = getwd(),
-                          speciesList = "ALL")
-
-
 ```
 
+Output the interactive map using a modified functino from BeeBDC
 
+```{r MapOut}
+RichmondBirdwingData %>% 
+  interactiveMapR(outPath = getwd(),
+                  speciesList = "ALL",
+                  returnPlot = TRUE)
+```
 
 
 ```{r QLDmap }

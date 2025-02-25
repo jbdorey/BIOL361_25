@@ -34,6 +34,8 @@ Suggests:
     kableExtra,
     geodata,
     tidyterra,
+    BeeBDC,
+    bdc,
     purrr,
     R.utils,
     rgnparser,
