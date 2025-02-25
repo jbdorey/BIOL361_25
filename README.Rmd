@@ -18,11 +18,6 @@ editor_options:
 ```{r websiteSetUp, eval = FALSE, include=FALSE}
 setwd("/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25")
 
-  # Load all of the functions
-devtools::load_all()
-#roxygen2::roxygenise()
-devtools::document()
-
   # Setup github pages 
   # See https://happygitwithr.com/common-remote-setups.html 
   # AND see https://pkgdown.r-lib.org/index.html
@@ -34,7 +29,7 @@ devtools::document()
 
 # Preview your site locally before publishing
 pkgdown::build_site(pkg = "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25",
-                    devel = TRUE)
+                    devel = FALSE)
 usethis::use_github_action("pkgdown")
 usethis::use_git_remote("origin", url = NULL, overwrite = TRUE)
 usethis::use_github(private = FALSE)
@@ -70,10 +65,10 @@ This is a simple GitHub page to host some activities for the BIOL361 cohort. It 
 
 Contributors names and contact info
 
-Dr James Dorey
+Dr [James Dorey](https://scholars.uow.edu.au/james-dorey), jdorey@uow.edu.au, 
 [@jamesbeedorey.bsky.social]([https://twitter.com/dompizzie](https://bsky.app/profile/jamesbeedorey.bsky.social))
 
 ## Version History
 
-* 0.1
-    * Initial Release
+* 1.0
+    * Initial Release and fixes

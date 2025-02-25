@@ -33,10 +33,11 @@ map](https://jbdorey.github.io/BIOL361_25/articles/birdwingR.html).
 
 Contributors names and contact info
 
-Dr James Dorey
+Dr [James Dorey](https://scholars.uow.edu.au/james-dorey),
+<jdorey@uow.edu.au>,
 [@jamesbeedorey.bsky.social](%5Bhttps://twitter.com/dompizzie%5D(https://bsky.app/profile/jamesbeedorey.bsky.social))
 
 ## Version History
 
-- 0.1
-  - Initial Release
+- 1.0
+  - Initial Release and fixes
