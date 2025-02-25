@@ -2,9 +2,10 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
+  birdwingR: birdwingR.html
   Prac1_BIOL361: Prac1_BIOL361.html
   Prac2_BIOL361: Prac2_BIOL361.html
-last_built: 2025-02-25T02:16Z
+last_built: 2025-02-25T03:07Z
 urls:
   reference: https://jbdorey.github.io/BIOL361_25/reference
   article: https://jbdorey.github.io/BIOL361_25/articles
