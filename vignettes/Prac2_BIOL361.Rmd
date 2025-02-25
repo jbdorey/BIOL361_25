@@ -319,12 +319,27 @@ C_ele <- C_ele %>%
   ggplot2::geom_boxplot())
 ```
 
+> **Q4:** Can you make a new column with the **median** elevational values?
+
+`r if(demonstratorVersion == TRUE){"**something like 'dplyr::mutate(median_elevation = median(AUS_elv_msk, na.rm = TRUE))' added to the script**"}`
+
+> **Q5:** Can you restrict the map view of *AusEleMap_points* to Australia's North East corner? **Hint**: run `?ggplot2::ylim()` and `?ggplot2::xlim()` and pay attention to the latitude and lonigtude values.
+
+`r if(demonstratorVersion == TRUE){"**something like 'ggplot2::ylim(-30, -10) + ggplot2::xlim(140, 155)' added to the script**"}`
+
+```{r restrictExtent, include = FALSE}
+restricted_AusEle <- AusEleMap_points +
+  ggplot2::ylim(-30, -10) + ggplot2::xlim(140, 155)
+```
 
 
 
 
 
-
+<div class="alert alert-info">
+  <strong> Attention:</strong> <br>
+Once you have completed all of the questions and shown your demonstrator or Lecturer the answers and the outputs, you may leave. Or, feel free to hang around, play, or help your classmates.
+</div>
 
 # Packages used today
 
