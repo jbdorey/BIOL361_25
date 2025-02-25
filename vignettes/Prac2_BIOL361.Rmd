@@ -106,7 +106,7 @@ install.packages("tidyterra")
 
 Load all of the packages from this week and last week into **R**.
 
-```{r loadPackages}
+```{r loadPackages, eval = FALSE}
 library(dplyr)
 library(readr)
 library(magrittr)
@@ -149,6 +149,9 @@ Followed by (note the additional configuration argument needed for Homebrew)
 install.packages("terra", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")
   # install sf
 install.packages("sf", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")
+
+library(terra)
+library(sf)
 ```
 
 </div>
@@ -316,20 +319,12 @@ C_ele <- C_ele %>%
   ggplot2::geom_boxplot())
 ```
 
-### Vector
-
-### Raster
-
-## 
 
 
 
 
 
 
-# What's coming next week?
-
-Next week, we will be extending some of what we learnt here in order to read in GIS data, make some maps, and do some simple analyses.
 
 # Packages used today
 
@@ -337,5 +332,10 @@ Next week, we will be extending some of what we learnt here in order to read in 
 ![](Media_P2_BIOL361/readr.png){width="200px"}
 ![](Media_P2_BIOL361/magrittr.png){width="200px"} 
 ![](Media_P2_BIOL361/stringr.png){width="200px"}
+![](Media_P1_BIOL361/ggplot2.png){width="200px"}
+![](Media_P2_BIOL361/tidyterra.png){width="200px"}
+![](Media_P2_BIOL361/terra.png){width="200px"}
+![](Media_P2_BIOL361/sg_logo.gif){width="200px"}
 
-Plus the default R packages, **base** and **utils** 
+
+Plus the default **R** packages, **base** and **utils** as well as **geodata**

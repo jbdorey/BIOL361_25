@@ -169,7 +169,7 @@ You may have seen that more than one package was installed when you ran the abov
 
 The last **R** thing that I will get you to do today is to load the packages into **R** (this also should be done every time you open **R**, for the relevant packages). You need to do this because you may not always want EVERY package that you have ever downloaded to be accessible from in **R**... it can cause issues. In this way, you can be more selective about which ones are active.
 
-```{r loadPackages, include=TRUE}
+```{r loadPackages, include=TRUE, eval = FALSE}
 library(dplyr)
 library(readr)
 library(magrittr)
@@ -489,5 +489,6 @@ Next week, we will be extending some of what we learnt here in order to read in 
 ![](Media_P1_BIOL361/readr.png){width="200px"}
 ![](Media_P1_BIOL361/magrittr.png){width="200px"} 
 ![](Media_P1_BIOL361/stringr.png){width="200px"}
+![](Media_P1_BIOL361/ggplot2.png){width="200px"}
 
 Plus the default R packages, **base** and **utils** 
