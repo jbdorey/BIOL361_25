@@ -32,6 +32,8 @@ Suggests:
     prettydoc,
     styler,
     kableExtra,
+    geodata,
+    tidyterra,
     purrr,
     R.utils,
     rgnparser,

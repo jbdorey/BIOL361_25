@@ -263,9 +263,13 @@ CoelioxysPoints <- CoelioxysData %>%
     ggplot2::theme_bw())
 ```
 
-## Vector
+> **Q3:** How many species are in the dataset and which is most-widespread?
+
+`r if(demonstratorVersion == TRUE){"**(1) There are four species and (2) C. froggatti is the most abundant.**"}`
 
 # Simple analyses
+
+Cool, so we have some raster data (DEM) and we have some vector data (points) Waht can we do with this information?! Well, one of the simplest things 
 
 ## Extract data
 
