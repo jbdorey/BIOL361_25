@@ -88,11 +88,6 @@ Your computers should already have **R** and **RStudio** installed. If they do n
 
 If you have a moment of spare time you may consider skimming the below text, especially the "Script preparation" and "What's coming next week" sections.
 
-<div class="alert alert-info">
-  <strong> Attention:</strong> <br>
-This section has three tabs; 1.1–1.3.
-</div>
-
 ## Install *R*
 
 If **R** is NOT installed on your computer already, we will go ahead and do that now. Please visit the [**CSIRO mirror for CRAN**](https://cran.csiro.au) and download the relevant version of **R** for your operating system. Then, follow the instructions to install it on your computer.
@@ -164,6 +159,8 @@ install.packages("readr")
 install.packages("magrittr")
 # This package is used to manipulate strings of text — it's really powerful! 
 install.packages("stringr")
+# ggplot2 is an extremely powerful graphical packages
+install.packages("ggplot2")
 ```
 
 You may have seen that more than one package was installed when you ran the above code. That's normal, many packages depend on other packages to work.
@@ -176,6 +173,7 @@ The last **R** thing that I will get you to do today is to load the packages int
 library(dplyr)
 library(readr)
 library(magrittr)
+library(ggplot2)
 library(stringr)
 ```
 
@@ -192,7 +190,7 @@ utils::download.file(url = "https://raw.githubusercontent.com/jbdorey/BIOL361_25
                      method="curl")
 ```
 
-Okay, we have downloaded these data and you can go ahead and look in your working directory (*if you're not sure type "getwd()" into R to see where this is*). Let's go ahead and read it into R and we can also look at it once it's read in. To do this, we will use the tidyverse package, **readr**.
+Okay, we have downloaded these data and you can go ahead and look in your working directory (*if you're not sure type "getwd()" into R to see where this is*). Let's go ahead and read it into R and we can also look at it once it's read in. To do this, we will use the **tidyverse** package, **readr**.
 
 ```{r readInData}
   # read in the data using readr

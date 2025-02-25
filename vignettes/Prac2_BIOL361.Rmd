@@ -82,27 +82,188 @@ It's clear that these projection are visually very... diverse. This becomes a pr
 
 [Image from here](https://en.wikipedia.org/wiki/World_Geodetic_System)
 
+# Script preparation
 
-## *R* formats and packages
+## Install and load packages
+
+Set you working directory again. This can be the same as last week's or a new one — up to you! 
+
+```{r setRootPath, include=TRUE,  eval=FALSE}
+  # Set the RootPath to your folder
+RootPath <- "/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1"
+  # You can then set this as the project's working directory. 
+  # This is where R will first look to find 
+  # or save data as a default
+setwd(RootPath)
+```
+
+These are the **NEW** packages that we will use this week. If you have lost those from last week, go back and install them as well. Although, below we will also install some GIS packages.
+
+```{r installPackages, eval = FALSE}
+install.packages("geodata")
+install.packages("tidyterra")
+```
+
+Load all of the packages from this week and last week into **R**.
+
+```{r loadPackages}
+library(dplyr)
+library(readr)
+library(magrittr)
+library(stringr)
+library(ggplot2)
+library(geodata)
+library(tidyterra)
+```
+
+## GIS in *R* formats and packages
 
 Different GIS programs tend to have different file formats. **ArcMap** is the most cagey (as it's a proprietary program) and so has a bunch of annoying proprietary file formats. **QGIS** is open source and tends to use some simpler formats (yay!). **R** is more-or-less able to open any of those formats and read them in (even more yay!). Let's install the needed packages and have a very short discussion of their [preferred] formats.
 
+> "**Raster** data divide space into *rectangular grid cells* and they are commonly used to represent spatially continuous phenomena, such as elevation or the weather. Satellite images also have this data structure, and in that context grid cells are often referred to as pixels. In contrast, **vector** spatial data (*points, lines, polygons*) are typically used to represent discrete spatial entities, such as a road, country, or bus stop."
+
+<div class="alert alert-info">
+  <strong> Attention:</strong> <br>
+Annoyingly, the first time that you use **terra** or **sf** on a new computer you may need to install some dependencies. Try to install the **terra** and **sf** packages first but then come back here if that doesn't work.
+
+  <strong> Windows:</strong> <br>
+  On **Windows**, you need to first install [Rtools](https://cran.r-project.org/bin/windows/Rtools/) to get a C++ compiler that **R** can use. You need a recent version of **Rtools42** (rtools42-5355-5357).
+
+  <strong> MacOS:</strong> <br>
+On **macOS**, you can use [MacPorts](https://www.macports.org/) or [Homebrew](https://brew.sh/).
+
+With **MacPorts** you can do
+
+`sudo port install R-terra`
+
+With **Homebrew**, you need to first install GDAL:
+
+`brew install pkg-config`
+
+`brew install gdal`
+
+Followed by (note the additional configuration argument needed for Homebrew)
+
+```{r, eval = FALSE}
+  # Install terra
+install.packages("terra", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")
+  # install sf
+install.packages("sf", type = "source", configure.args = "--with-proj-lib=$(brew --prefix)/lib/")
+```
+
+</div>
+
 ### *terra* (formerly *raster*)
 
-The **terra** package is mostly used to deal with raster data, but has some ability to work with vector data as well. *(It was also formerly called **raster**.)*
+The [**terra**](https://rspatial.github.io/terra/index.html) package is mostly used to deal with raster data, but has some ability to work with vector data as well. *(It was also formerly called **raster**.)*
+
+The **terra** package has two main data types, simply called **SpatRaster** and **SpatVector**. *(along with some minor types.)*
 
 ### *sf* (formerly *sp*)
 
-The **sf**, or *simple feature* package (formerly **sp**) mainly works with vector data. That's to say that by-and-large, it works with points and lines. However, it does have some abilities to use raster as well.
+The [**sf**](https://r-spatial.github.io/sf/), or *simple feature* package (formerly **sp**) mainly works with vector data. That's to say that by-and-large, it works with points and lines. However, it does have some abilities to use raster as well.
+
+By and large, **sf** works with *data frames* and *tibbles* (the latter is what we make with `readr::read_csv()`!). Essentially, it stores the spatial data in an easily human-readable table!
 
 # Read and plot data
 
-## Points
+Okay, maybe that's enough faffing around! There's more to know about GIS, but this isn't the place to learn it all. I just want to give you a brief overview of what's possible to do in R so that in your future careers you'll be able to do some amazing thigns for conservation biology! We have talked a lot about these data types, and now I think it's past time to get to work with them! 
 
-## Vector
 
 ## Raster
 
+We can often find raster datasets from government, non-governmental, and other websites and datasets. You can spend ages looking around online for the best possible dataset to download and apply towards a conservation goal. However, **R** also provides packages that can very easily and quickly read in datasets from the internet! 
+
+Below, we will use the **R** package **geodata** to download a Digital Elevation Model (DEM) os the entirity of Australia at a 30-second (~1 km) resolution.
+
+```{r downloadRaster, include = TRUE}
+AustralianElevations <- geodata::elevation_30s("Australia",
+                               path = RootPath)
+  # View a summary of the data
+AustralianElevations
+```
+
+How about that! Within a few seconds we have a *spatRaster* showing the elevatino across Australia! 
+
+> **Q2:** Looking at the summary of *AustralianElevations*, (1) what are the dimensions of the file, (2) what is the coordinate reference system and is it a **projected** or **geographic** coordinate system (see "Projections" above), and (3) what are the minimum and maximum elevational values for this map of Australia?
+
+`r if(demonstratorVersion == TRUE){"**(1) 4296x5592; (2) geographic coordinate system — WGS 84; (3) -60 and +2159 meters above sea level**"}`
+
+Let's go ahead and have a little peak at what our data looks like now as well. Quite often you can just run `terra::plot()` for your map... however, I don't always recommend this with bigger GIS files as they can freeze your computer. In fact, **ggplot2**, with the help of **tidyterra** does a better job once again! 
+
+```{r plotRaster}
+(AusEleMap <- ggplot2::ggplot() +
+  tidyterra::geom_spatraster(data = AustralianElevations,
+                             ggplot2::aes(fill = AUS_elv_msk)) +
+    # Feel free to remove this line (don't leave an open "+" in the previous line) and
+    # see what happens! "viridis" is one of MANY colour palettes available with ggplot2
+  ggplot2::scale_fill_viridis_c(na.value = "transparent") )
+```
+
+Look, I know that I'm a data nerd and all but seriously? Within a few lines of code and a few minutes we have a map of Australia that you could use in a publication or for an analysis? That's pretty powerful stuff! **BUT**, an elevation map of Australia isn't necessarrily that interesting by itself... maybe we want some species occurrence data to go with it?
+
+## Vector
+
+So, let's put some points on our map! Just like last week, we are going to download some data that I've hosted online and then read it into **R**.
+
+```{r downloadData, include=TRUE}
+utils::download.file(url = "https://raw.githubusercontent.com/jbdorey/BIOL361_25/main/DoreyPrac2/Australian_Coelioxys.csv",
+                     destfile = "Australian_Coelioxys.csv",
+                     method="curl")
+```
+
+Okay, we have downloaded these data and you can go ahead and look in your working directory (*if you're not sure type "getwd()" into R to see where this is*). Let's go ahead and read it into R and we can also look at it once it's read in. To do this, we will use the **tidyverse** package, **readr**.
+
+```{r readInData}
+  # read in the data using readr
+CoelioxysData <- readr::read_csv("Australian_Coelioxys.csv")
+```
+
+```{r out.width='30%', out.extra='style="float:right; padding:10px"', fig.cap='', fig.align="right", echo = FALSE}
+knitr::include_graphics("Media_P2_BIOL361/Coelioxys (Torridapis) weinlandi_JamesDorey_Coelioxys sp. 18JDEC490i 146p MPE 2x.jpg")
+```
+
+> **Q2:** What type of data did we just download? How many rows of data are included?
+
+`r if(demonstratorVersion == TRUE){"**(1) Species occurrence data and (2) 102 rows of data, representing 102 species occurrence records**"}`
+
+We just downloaded all of the available and quality data for the Australian bee genus, *Coelioxys*! These are really cool cuckoo bees that lay their eggs in the nests of other bees in the genus *Megachile* — just like cuckoo birds!
+
+So, let's go ahead and have a quick look at those data. Just to show you how simple point data really are in GIS, we could simply plot the longitude (x-axis) and latitude (y-axis) and you should be able to make out the outline of Australia just using those occurrence data! ...But see how it's kinda squished? Think back to the importance of our projection systems and how we "see" the world [on a map].
+
+```{r simplePointPlot}
+plot(x = CoelioxysData$decimalLongitude, y = CoelioxysData$decimalLatitude)
+```
+
+But really, we want to make a much nicer plot, with these points overlaid with Australia. So, let's go ahead and add onto our previous **ggplot2** object!
+
+```{r ggplotPoints1}
+(AusEleMap_points <- AusEleMap +
+  ggplot2::geom_point(data = CoelioxysData,
+                      ggplot2::aes(x = decimalLongitude, y = decimalLatitude),
+                      colour = "red"))
+
+```
+
+See, **ggplot2** is really clever! We could plot just a regular tibble file! But, to do more complex things, we will want to turn it into an **sf** *simple feature* format. This is actually really easy to do! And then we don't even need to specify the x and y, **R** just knows as we use the `ggplot2::geom_sf()` function now to plot the **sf** date format! We could also easily group our data by species.
+
+```{r pointTosf}
+CoelioxysPoints <- CoelioxysData %>%
+  sf::st_as_sf(coords = c("decimalLongitude", "decimalLatitude"),
+                # we can even match the coordinate reference system as we make our points!
+               crs = sf::st_crs(AustralianElevations))
+
+  # now make the map using the "sf" data points
+(AusEleMap_points <- AusEleMap +
+  ggplot2::geom_sf(data = CoelioxysPoints,
+                    # Colour points by species name
+                   ggplot2::aes(colour = scientificName)
+                      ) +
+      # Add in a simpler theme
+    ggplot2::theme_bw())
+```
+
+## Vector
 
 # Simple analyses
 
