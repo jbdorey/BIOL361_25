@@ -269,9 +269,52 @@ CoelioxysPoints <- CoelioxysData %>%
 
 # Simple analyses
 
-Cool, so we have some raster data (DEM) and we have some vector data (points) Waht can we do with this information?! Well, one of the simplest things 
+Cool, so we have some raster data (DEM) and we have some vector data (points)... What can we do with this information?! Well, one of the simplest things that we could want to do with raster (or vector data like polygons) and vector data is to extract information at each of those points. That's quite easy to achieve here, so why don't we find the elevation at each of our occurrence points?
 
 ## Extract data
+
+As we are working with a *raster* file, it is often easiest to *extract* the map data using the **terra** package. Somewhat annoyingly, this returns a `data.frame` object with only two columns, "ID" and "AUS_elv_msk"! How can we match our data back to the original occurrences?! 
+
+```{r extractElevation}
+  # Run the extraction
+CoelioxysElevations <- terra::extract(AustralianElevations, CoelioxysPoints)
+  # Examine the data's class
+class(CoelioxysElevations)
+```
+
+```{r, outputTable_select, echo=FALSE}
+kableExtra::kbl(CoelioxysElevations) %>%
+  kableExtra::kable_material(c("striped", "hover")) %>%
+  kableExtra::kable_styling(bootstrap_options = "responsive", full_width = F, fixed_thead = T) %>%
+  kableExtra::scroll_box(height = "350px")
+```
+
+This is pretty easy it turns out! Let's work with our original *CoelioxysData* dataset which has all of the information that we could need, but *select* only *scientificName*, *decimalLatitude*, and *decimalLongitude* to make things easier. We can then *bind columns* together with the new *CoelioxysElevations* dataset using **dplyr**! Because they are in the same order, they should fit together well! 
+
+```{r elevationFormat}
+C_ele <- CoelioxysData %>%
+    # Select a subset of the columns
+  dplyr::select(scientificName, decimalLatitude, decimalLongitude) %>%
+    # Bind these columns with those from the new dataset
+  dplyr::bind_cols(CoelioxysElevations)
+```
+
+We can do analyses on these extracted data now as well! For example, we could look at how these species interact with elevation across their ranges. We can start out by grouping our data using the scientific names of the species and **dplyr**. Within those groups we could easily figure out some statistics like the mean, median, max, min, et cetera. We could also easily plot these data to see the patterns in 
+
+```{r plotElevation}
+C_ele <- C_ele %>%
+    # Group by scientific name to apply functions WITHIN group
+  dplyr::group_by(scientificName) %>%
+    # Create a new column with mean elevation per group
+  dplyr::mutate(mean_elevation = mean(AUS_elv_msk, na.rm = TRUE))
+
+  # Make a plot of the recently-extracted data per species
+(C_ele_boxplot <- ggplot2::ggplot(data = C_ele,
+                        ggplot2::aes(y = AUS_elv_msk,
+                                     group = scientificName,
+                                     colour = scientificName)) +
+  ggplot2::geom_boxplot())
+```
 
 ### Vector
 
