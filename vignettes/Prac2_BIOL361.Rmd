@@ -207,6 +207,8 @@ Look, I know that I'm a data nerd and all but seriously? Within a few lines of c
 
 ## Vector
 
+### Point data
+
 So, let's put some points on our map! Just like last week, we are going to download some data that I've hosted online and then read it into **R**.
 
 ```{r downloadData, include=TRUE}
@@ -270,6 +272,49 @@ CoelioxysPoints <- CoelioxysData %>%
 
 `r if(demonstratorVersion == TRUE){"**(1) There are four species and (2) C. froggatti is the most abundant.**"}`
 
+### Polygon data
+
+Remember how I said that vector data are just points and lines? Well, so far we have only drawn points... Let's add in some lines! These data are called "polygon" data and are still relatively simple. It's also quite easy to get yourself some REALLY great polygon map data in R using a couple of packages, **rnaturalearth** and **rnaturalearthdata**; the latter if you need higher-resolution data. Let's go ahead and install+load these packages here.
+
+```{r rnaturalearth_install, eval = FALSE}
+  # Install packages
+install.packages("rnaturalearth")
+install.packages("rnaturalearthdata")
+  # Load packages
+library(rnaturalearth)
+library(rnaturalearthdata)
+```
+
+Now we can go ahead and see how easy it is to download even more excellent GIS data *directly* into **R**. There are a few useful functions you might look up depending on your purposes, such as `rnaturalearth::ne_countries()`, `rnaturalearth::ne_coastline()`, and `rnaturalearth::ne_states()`. Obviously, we should download the Australia map, but depending on how stressed you are, I encourage you to play around and look at other countries as well! 
+
+```{r naturalearthDownload}
+  # I'll choose an agnostic name for the file in case you download other countries.
+polygonMap <- rnaturalearth::ne_countries(
+  scale = 50, # Can be 110, 50, or 10; 10 is the highest resolution and requires rnaturalearthdata
+  country = "Australia",
+  type = "map_units",
+  returnclass = "sf" # You could also use "SpatVector" for the terra package! 
+)
+```
+
+Alright, you've downloaded a map, the obvious next step is to view the map! You could use the `base::plot()` function, which will take a while and have... unexpected consequences (only do this if you're feeling chaotic and not short on time). Instead, let's use **ggplot2**. Go ahead and run and review the two maps below. The first map is all of Australia and tell me where the second map is. The second map will make the idea of polygons much clearer (if you have time, change the scale of the *polygonMap* above). 
+
+```{r ggplotNaturalEarth, eval=FALSE}
+  # plot the map in ggplot2
+(ggPolyMap <- ggplot2::ggplot(data = polygonMap) + 
+  ggplot2::geom_sf())
+
+(mysteryMap <- ggplot2::ggplot(data = polygonMap) + 
+    ggplot2::geom_sf() +
+    ggplot2::ylim(-40.3,-39.5) + ggplot2::xlim(143,145)
+  )
+
+```
+
+> **Q4:** Approximately how many points and how many lines are there in the mysteryMap polygon?
+
+`r if(demonstratorVersion == TRUE){"**something like 18 points and 17 lines (I literally counted them)**"}`
+
 # Simple analyses
 
 Cool, so we have some raster data (DEM) and we have some vector data (points)... What can we do with this information?! Well, one of the simplest things that we could want to do with raster (or vector data like polygons) and vector data is to extract information at each of those points. That's quite easy to achieve here, so why don't we find the elevation at each of our occurrence points?
@@ -319,11 +364,11 @@ C_ele <- C_ele %>%
   ggplot2::geom_boxplot())
 ```
 
-> **Q4:** Can you make a new column with the **median** elevational values?
+> **Q5:** Can you make a new column with the **median** elevational values?
 
 `r if(demonstratorVersion == TRUE){"**something like 'dplyr::mutate(median_elevation = median(AUS_elv_msk, na.rm = TRUE))' added to the script**"}`
 
-> **Q5:** Can you restrict the map view of *AusEleMap_points* to Australia's North East corner? **Hint**: run `?ggplot2::ylim()` and `?ggplot2::xlim()` and pay attention to the latitude and lonigtude values.
+> **Q6:** Can you restrict the map view of *AusEleMap_points* to Australia's North East corner? **Hint**: run `?ggplot2::ylim()` and `?ggplot2::xlim()` and pay attention to the latitude and lonigtude values.
 
 `r if(demonstratorVersion == TRUE){"**something like 'ggplot2::ylim(-30, -10) + ggplot2::xlim(140, 155)' added to the script**"}`
 
@@ -332,8 +377,38 @@ restricted_AusEle <- AusEleMap_points +
   ggplot2::ylim(-30, -10) + ggplot2::xlim(140, 155)
 ```
 
+## Find the distance to coastline (nearest feature)
 
+We can also do some simple vector-vector analyses. What if, for example, we wanted to know how close each point was to the coast line (or some other vector). First of all, we can look at the points and the polygon together (this is very helpful for getting a lay of the land, if you will...
 
+```{r plotPointsPoly}
+  # plot the map in ggplot2
+(polyPointMap <- ggplot2::ggplot() + 
+  ggplot2::geom_sf(data = polygonMap) + 
+   ggplot2::geom_sf(data = CoelioxysPoints))
+```
+
+We could then ask for the *st_*distance to the polygon map of Australia for each point. Something like the below. Let's look at the first ten distances (from the first ten points to the polygon).
+
+```{r nearestFeature_multipolygon}
+distanceToPolygon <- CoelioxysPoints %>%
+  sf::st_distance(polygonMap) 
+head(distanceToPolygon, 10)
+```
+
+Hmm... That's a little odd, only the 8th point has a distance and the rest are actually zero! If you're confused by this, don't stress; so was I for a moment until I figured out that we are measuring the distance to a POLYGON that is essentially *filled in*! We want to measure the distance to the coast line, and so we need to make a conversion from a filled polygon to a simple line. We can evendo this within our function by employing the `sf::st_cast()` function by feeding *polygonMap* into it using the pipes (`%>%`).
+
+```{r nearestFeature_multistring}
+distanceToString <- CoelioxysPoints %>%
+  sf::st_distance(polygonMap %>% sf::st_cast(to = 'MULTILINESTRING')) 
+head(distanceToString, 10)
+```
+
+There we go, I think that make a bit more sense! And, you can see that the eight point is the *same* distance as it was in the previous example. That begs the question... 
+
+> **Q7:** Why was the eight point (as well as the 13th, 21st, 42nd, and 74th) above zero, when the others were not? And why has that value stayed the same while the others have changed? This isn't really a trick question, but just to check that you understand what we did.
+
+`r if(demonstratorVersion == TRUE){"**Those points that were >0 initially were off the coast of Australia. Perhaps because the coordinates were poorly collected, with poor precision, or even in an inter-tidal zone. The answer may also change if you changed the map resolution which woudl shift the coastline slightly.**"}`
 
 
 <div class="alert alert-info">

@@ -1787,7 +1787,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">BIOL361 Prac 1 — R and tidyverse
 basics</h1>
 <h4 class="author">Dr James B Dorey, University of Wollongong</h4>
-<h4 class="date">Version 2025-02-25; practical 2025-03-24</h4>
+<h4 class="date">Version 2025-03-10; practical 2025-03-24</h4>
 <div class="abstract">
 <p class="abstract">Abstract</p>
 This practical class should not be particularly onerous. Today is mostly
@@ -18466,13 +18466,9 @@ question below.</p>
 “<strong>NA</strong>” for sex?</p>
 </blockquote>
 </div>
-<div id="make-histograms-prettier" class="section level2 tabset" number="5.2">
-<h2 class="tabset"><span class="header-section-number">5.2</span> Make
-histograms prettier</h2>
-<div class="alert alert-info">
-<p><strong> Attention:</strong> <br> This section has three tabs;
-5.2.1–5.2.3.</p>
-</div>
+<div id="make-histograms-prettier" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Make histograms
+prettier</h2>
 <div id="colour-by-sex" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Colour by sex</h3>
 <p>We can also make our histograms a bit prettier! That would be nice,
@@ -18633,6 +18629,108 @@ new elements! So, let’s add in some points based on sex!</p>
 <p><strong>Q5:</strong> Make a line plot where eventDate is (1) grouped
 by sex with (2) “male” as a warm colour, (3) “female” as a cool colour,
 and (4) “NA” as a neutral shade.</p>
+</blockquote>
+</div>
+<div id="very-simple-statistical-test" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Very simple
+statistical test</h2>
+<p>I also want to very briefly show you that statistics are also
+<em>really</em> easy in <strong>R</strong>! It may be a silly question
+to ask, but, we could ask if we have collect more female
+<em>Hylaeus</em> than we do male <em>Hylaeus</em>, on average. Without
+thinking too much about the statistical robustness of our question,
+let’s use years as sampling events. First, we will have a look at the
+number of records by <em>year</em>, by calling the
+<code>base::table()</code> function for year, which will count for
+us.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>  <span class="co"># Get a summary table of the counts per year</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">table</span>(HylaeusData<span class="sc">$</span>year)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co">#&gt; 1934 1970 1977 1983 1984 2002 2003 2004 2014 2016 2017 2019 </span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="co">#&gt;    2    3    3   11    1    4    7    1    3    1    2   36</span></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a>  <span class="co"># Now, get a summary matrix (or table) of year AND sex.</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a><span class="fu">table</span>(HylaeusData<span class="sc">$</span>year, HylaeusData<span class="sc">$</span>sex)</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a><span class="co">#&gt;       </span></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co">#&gt;        female male</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a><span class="co">#&gt;   1934      1    0</span></span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a><span class="co">#&gt;   1970      2    1</span></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co">#&gt;   1977      2    1</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="co">#&gt;   1983      1   10</span></span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a><span class="co">#&gt;   1984      1    0</span></span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a><span class="co">#&gt;   2002      3    1</span></span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a><span class="co">#&gt;   2003      6    1</span></span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a><span class="co">#&gt;   2004      1    0</span></span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a><span class="co">#&gt;   2014      1    2</span></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a><span class="co">#&gt;   2016      0    1</span></span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a><span class="co">#&gt;   2017      1    1</span></span>
+<span id="cb19-21"><a href="#cb19-21" tabindex="-1"></a><span class="co">#&gt;   2019     21   15</span></span>
+<span id="cb19-22"><a href="#cb19-22" tabindex="-1"></a>  <span class="co"># Ask for the class of the R object</span></span>
+<span id="cb19-23"><a href="#cb19-23" tabindex="-1"></a><span class="fu">class</span>(<span class="fu">table</span>(HylaeusData<span class="sc">$</span>year, HylaeusData<span class="sc">$</span>sex))</span>
+<span id="cb19-24"><a href="#cb19-24" tabindex="-1"></a><span class="co">#&gt; [1] &quot;table&quot;</span></span></code></pre></div>
+<p>Without going into great detail, the <code>base::table()</code>
+function returns a <em>class table</em> object. <strong>Base R</strong>
+objects, compared with <strong>tidyverse</strong> objects, can be a pain
+to work with. For example, the existence of “row names” is a constant
+pain as they are essentially a column that’s harder to interact with.
+Instead, let’s use <strong>tidyverse</strong> to build our table; it’s
+longer and a bit more confusing, but actually easier than using
+<code>base::table()</code> and turning it back into a <em>tibble</em>!
+My apologies as it gets a little long, but feel free to follow my
+comments there or not.</p>
+<p>Back to the statistics… If we look at both <em>year</em> AND
+<em>sex</em>, it might be that we do collect more females on average!
+Let’s test that using a statistic; the <em>Z-test</em> of two
+proportions using the default <code>stats::prop.test()</code>
+function.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>HylaeusTable <span class="ot">&lt;-</span> HylaeusData <span class="sc">%&gt;%</span> </span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>    <span class="co"># First, we will gorup by year and sex to apply functions within those groupings</span></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(year, sex) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>    <span class="co"># Count the number in each year+sex group and then drop any &quot;NA&quot; or empty values (year and sex</span></span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>    <span class="co"># were not always recorded :( )</span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a>    <span class="co"># Make the tibble wider by putting each count of sex into its own column</span></span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> sex,</span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>                     <span class="at">values_from =</span> <span class="fu">c</span>(n)) <span class="sc">%&gt;%</span></span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>    <span class="co"># Instead of having &quot;NA&quot; for no males or females caught, make those into zero (for calculating</span></span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>    <span class="co"># The proportion of females below).</span></span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">replace_na</span>(<span class="fu">list</span>(<span class="at">male =</span> <span class="dv">0</span>, <span class="at">female =</span> <span class="dv">0</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a>    <span class="co"># Calculate the proportion of females and the total numebr of specimens per year</span></span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">propFemale =</span> female<span class="sc">/</span>(male<span class="sc">+</span>female),</span>
+<span id="cb20-16"><a href="#cb20-16" tabindex="-1"></a>                <span class="at">totalSpecimens =</span> male<span class="sc">+</span>female)</span>
+<span id="cb20-17"><a href="#cb20-17" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" tabindex="-1"></a>  <span class="co"># Test this statistically</span></span>
+<span id="cb20-19"><a href="#cb20-19" tabindex="-1"></a>proportionTest <span class="ot">&lt;-</span> stats<span class="sc">::</span><span class="fu">prop.test</span>(<span class="at">x =</span> HylaeusTable<span class="sc">$</span>propFemale, </span>
+<span id="cb20-20"><a href="#cb20-20" tabindex="-1"></a>                 <span class="at">n =</span> HylaeusTable<span class="sc">$</span>totalSpecimens)</span>
+<span id="cb20-21"><a href="#cb20-21" tabindex="-1"></a><span class="co">#&gt; Warning in stats::prop.test(x = HylaeusTable$propFemale, n</span></span>
+<span id="cb20-22"><a href="#cb20-22" tabindex="-1"></a><span class="co">#&gt; = HylaeusTable$totalSpecimens): Chi-squared approximation</span></span>
+<span id="cb20-23"><a href="#cb20-23" tabindex="-1"></a><span class="co">#&gt; may be incorrect</span></span>
+<span id="cb20-24"><a href="#cb20-24" tabindex="-1"></a>  <span class="co"># View the empirical proportion and the estiamted proportion of females </span></span>
+<span id="cb20-25"><a href="#cb20-25" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">tibble</span>(<span class="at">proportionOfFemales =</span> HylaeusTable<span class="sc">$</span>propFemale,</span>
+<span id="cb20-26"><a href="#cb20-26" tabindex="-1"></a>              <span class="at">estimate =</span> proportionTest<span class="sc">$</span>estimate,)</span>
+<span id="cb20-27"><a href="#cb20-27" tabindex="-1"></a><span class="co">#&gt; # A tibble: 12 × 2</span></span>
+<span id="cb20-28"><a href="#cb20-28" tabindex="-1"></a><span class="co">#&gt;    proportionOfFemales estimate</span></span>
+<span id="cb20-29"><a href="#cb20-29" tabindex="-1"></a><span class="co">#&gt;                  &lt;dbl&gt;    &lt;dbl&gt;</span></span>
+<span id="cb20-30"><a href="#cb20-30" tabindex="-1"></a><span class="co">#&gt;  1              1       1      </span></span>
+<span id="cb20-31"><a href="#cb20-31" tabindex="-1"></a><span class="co">#&gt;  2              0.667   0.222  </span></span>
+<span id="cb20-32"><a href="#cb20-32" tabindex="-1"></a><span class="co">#&gt;  3              0.667   0.222  </span></span>
+<span id="cb20-33"><a href="#cb20-33" tabindex="-1"></a><span class="co">#&gt;  4              0.0909  0.00826</span></span>
+<span id="cb20-34"><a href="#cb20-34" tabindex="-1"></a><span class="co">#&gt;  5              1       1      </span></span>
+<span id="cb20-35"><a href="#cb20-35" tabindex="-1"></a><span class="co">#&gt;  6              0.75    0.188  </span></span>
+<span id="cb20-36"><a href="#cb20-36" tabindex="-1"></a><span class="co">#&gt;  7              0.857   0.122  </span></span>
+<span id="cb20-37"><a href="#cb20-37" tabindex="-1"></a><span class="co">#&gt;  8              1       1      </span></span>
+<span id="cb20-38"><a href="#cb20-38" tabindex="-1"></a><span class="co">#&gt;  9              0.333   0.111  </span></span>
+<span id="cb20-39"><a href="#cb20-39" tabindex="-1"></a><span class="co">#&gt; 10              0       0      </span></span>
+<span id="cb20-40"><a href="#cb20-40" tabindex="-1"></a><span class="co">#&gt; 11              0.5     0.25   </span></span>
+<span id="cb20-41"><a href="#cb20-41" tabindex="-1"></a><span class="co">#&gt; 12              0.583   0.0162</span></span></code></pre></div>
+<p>The <em>Z-test</em> calculated the <em>estimated</em> proportion of
+females expected for each time and by-and-large there are more females
+recorded (a higher proportion) than expected by chance. But…</p>
+<blockquote>
+<p><strong>Q6: </strong>Was the proportion different from the expected
+at a statistically significant level of 5%? <strong>Hint:</strong> run
+<code>proportionTest</code> in the <strong>R</strong> console and have a
+look at the statistical outputs.</p>
 </blockquote>
 <div class="alert alert-info">
 <p><strong> Attention:</strong> <br> Once you have completed all of the

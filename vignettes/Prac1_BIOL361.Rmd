@@ -469,6 +469,55 @@ Cool, but what if we want to also see when the males and the females were collec
 
 > **Q5:** Make a line plot where eventDate is (1) grouped by sex with (2) "male" as a warm colour, (3) "female" as a cool colour, and (4) "NA" as a neutral shade.
 
+## Very simple statistical test
+
+I also want to very briefly show you that statistics are also *really* easy in **R**! It may be a silly question to ask, but, we could ask if we have collect more female *Hylaeus* than we do male *Hylaeus*, on average. Without thinking too much about the statistical robustness of our question, let's use years as sampling events. First, we will have a look at the number of records by *year*, by calling the `base::table()` function for year, which will count for us.
+
+```{r stats}
+  # Get a summary table of the counts per year
+table(HylaeusData$year)
+  # Now, get a summary matrix (or table) of year AND sex.
+table(HylaeusData$year, HylaeusData$sex)
+  # Ask for the class of the R object
+class(table(HylaeusData$year, HylaeusData$sex))
+```  
+
+Without going into great detail, the `base::table()` function returns a *class table* object. **Base R** objects, compared with **tidyverse** objects, can be a pain to work with. For example, the existence of "row names" is a constant pain as they are essentially a column that's harder to interact with. Instead, let's use **tidyverse** to build our table; it's longer and a bit more confusing, but actually easier than using `base::table()` and turning it back into a *tibble*! My apologies as it gets a little long, but feel free to follow my comments there or not. 
+
+Back to the statistics... If we look at both *year* AND *sex*, it might be that we do collect more females on average! Let's test that using a statistic; the *Z-test* of two proportions using the default `stats::prop.test()` function.
+
+```{r runStats}
+HylaeusTable <- HylaeusData %>% 
+    # First, we will gorup by year and sex to apply functions within those groupings
+  dplyr::group_by(year, sex) %>% 
+    # Count the number in each year+sex group and then drop any "NA" or empty values (year and sex
+    # were not always recorded :( )
+  dplyr::count() %>%
+  tidyr::drop_na() %>%
+    # Make the tibble wider by putting each count of sex into its own column
+  tidyr::pivot_wider(names_from = sex,
+                     values_from = c(n)) %>%
+    # Instead of having "NA" for no males or females caught, make those into zero (for calculating
+    # The proportion of females below).
+  tidyr::replace_na(list(male = 0, female = 0)) %>% 
+    # Calculate the proportion of females and the total numebr of specimens per year
+  dplyr::mutate(propFemale = female/(male+female),
+                totalSpecimens = male+female)
+
+  # Test this statistically
+proportionTest <- stats::prop.test(x = HylaeusTable$propFemale, 
+                 n = HylaeusTable$totalSpecimens)
+  # View the empirical proportion and the estiamted proportion of females 
+dplyr::tibble(proportionOfFemales = HylaeusTable$propFemale,
+              estimate = proportionTest$estimate,)
+```
+
+The *Z-test* calculated the *estimated* proportion of females expected for each time and by-and-large there are more females recorded (a higher proportion) than expected by chance. But...
+
+> **Q6: **Was the proportion different from the expected at a statistically significant level of 5%? **Hint:** run `proportionTest` in the **R** console and have a look at the statistical outputs.
+
+`r if(demonstratorVersion == TRUE){"**Yes. the p-value is 0.0007, much less than the standard 0.05 (or 5%) alpha value.**"}`
+
 <div class="alert alert-info">
   <strong> Attention:</strong> <br>
 Once you have completed all of the questions and shown your demonstrator or Lecturer the answers and the outputs, you may leave. Or, feel free to hang around, play, or help your classmates.
