@@ -66,7 +66,7 @@
                         <h4 data-toc-skip class="author">Dr James B
 Dorey, University of Wollongong</h4>
             
-            <h4 data-toc-skip class="date">Version 2025-02-25; practical
+            <h4 data-toc-skip class="date">Version 2025-03-10; practical
 2025-03-31</h4>
       
 
@@ -363,6 +363,10 @@ occurrence data to go with it?</p>
 <h3 id="vector">
 <span class="header-section-number">3.2</span> Vector<a class="anchor" aria-label="anchor" href="#vector"></a>
 </h3>
+<div class="section level4" number="3.2.1">
+<h4 id="point-data">
+<span class="header-section-number">3.2.1</span> Point data<a class="anchor" aria-label="anchor" href="#point-data"></a>
+</h4>
 <p>So, let’s put some points on our map! Just like last week, we are
 going to download some data that I’ve hosted online and then read it
 into <strong>R</strong>.</p>
@@ -442,6 +446,64 @@ species.</p>
 most-widespread?</p>
 </blockquote>
 </div>
+<div class="section level4" number="3.2.2">
+<h4 id="polygon-data">
+<span class="header-section-number">3.2.2</span> Polygon data<a class="anchor" aria-label="anchor" href="#polygon-data"></a>
+</h4>
+<p>Remember how I said that vector data are just points and lines? Well,
+so far we have only drawn points… Let’s add in some lines! These data
+are called “polygon” data and are still relatively simple. It’s also
+quite easy to get yourself some REALLY great polygon map data in R using
+a couple of packages, <strong>rnaturalearth</strong> and
+<strong>rnaturalearthdata</strong>; the latter if you need
+higher-resolution data. Let’s go ahead and install+load these packages
+here.</p>
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="co"># Install packages</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rnaturalearth"</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"rnaturalearthdata"</span><span class="op">)</span></span>
+<span>  <span class="co"># Load packages</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearth/" class="external-link">rnaturalearth</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://docs.ropensci.org/rnaturalearthdata/" class="external-link">rnaturalearthdata</a></span><span class="op">)</span></span></code></pre></div>
+<p>Now we can go ahead and see how easy it is to download even more
+excellent GIS data <em>directly</em> into <strong>R</strong>. There are
+a few useful functions you might look up depending on your purposes,
+such as <code><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">rnaturalearth::ne_countries()</a></code>,
+<code><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_coastline.html" class="external-link">rnaturalearth::ne_coastline()</a></code>, and
+<code><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_states.html" class="external-link">rnaturalearth::ne_states()</a></code>. Obviously, we should download
+the Australia map, but depending on how stressed you are, I encourage
+you to play around and look at other countries as well!</p>
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="co"># I'll choose an agnostic name for the file in case you download other countries.</span></span>
+<span><span class="va">polygonMap</span> <span class="op">&lt;-</span> <span class="fu">rnaturalearth</span><span class="fu">::</span><span class="fu"><a href="https://docs.ropensci.org/rnaturalearth/reference/ne_countries.html" class="external-link">ne_countries</a></span><span class="op">(</span></span>
+<span>  scale <span class="op">=</span> <span class="fl">50</span>, <span class="co"># Can be 110, 50, or 10; 10 is the highest resolution and requires rnaturalearthdata</span></span>
+<span>  country <span class="op">=</span> <span class="st">"Australia"</span>,</span>
+<span>  type <span class="op">=</span> <span class="st">"map_units"</span>,</span>
+<span>  returnclass <span class="op">=</span> <span class="st">"sf"</span> <span class="co"># You could also use "SpatVector" for the terra package! </span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Alright, you’ve downloaded a map, the obvious next step is to view
+the map! You could use the <code><a href="https://rdrr.io/r/base/plot.html" class="external-link">base::plot()</a></code> function, which
+will take a while and have… unexpected consequences (only do this if
+you’re feeling chaotic and not short on time). Instead, let’s use
+<strong>ggplot2</strong>. Go ahead and run and review the two maps
+below. The first map is all of Australia and tell me where the second
+map is. The second map will make the idea of polygons much clearer (if
+you have time, change the scale of the <em>polygonMap</em> above).</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="co"># plot the map in ggplot2</span></span>
+<span><span class="op">(</span><span class="va">ggPolyMap</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">polygonMap</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
+<span></span>
+<span><span class="op">(</span><span class="va">mysteryMap</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">polygonMap</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>    <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">ylim</a></span><span class="op">(</span><span class="op">-</span><span class="fl">40.3</span>,<span class="op">-</span><span class="fl">39.5</span><span class="op">)</span> <span class="op">+</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/lims.html" class="external-link">xlim</a></span><span class="op">(</span><span class="fl">143</span>,<span class="fl">145</span><span class="op">)</span></span>
+<span>  <span class="op">)</span></span></code></pre></div>
+<blockquote>
+<p><strong>Q4:</strong> Approximately how many points and how many lines
+are there in the mysteryMap polygon?</p>
+</blockquote>
+</div>
+</div>
 </div>
 <div class="section level2" number="4">
 <h2 id="simple-analyses">
@@ -462,7 +524,7 @@ the elevation at each of our occurrence points?</p>
 Somewhat annoyingly, this returns a <code>data.frame</code> object with
 only two columns, “ID” and “AUS_elv_msk”! How can we match our data back
 to the original occurrences?!</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="co"># Run the extraction</span></span>
 <span><span class="va">CoelioxysElevations</span> <span class="op">&lt;-</span> <span class="fu">terra</span><span class="fu">::</span><span class="fu"><a href="https://rspatial.github.io/terra/reference/extract.html" class="external-link">extract</a></span><span class="op">(</span><span class="va">AustralianElevations</span>, <span class="va">CoelioxysPoints</span><span class="op">)</span></span>
 <span>  <span class="co"># Examine the data's class</span></span>
@@ -1305,7 +1367,7 @@ could need, but <em>select</em> only <em>scientificName</em>,
 easier. We can then <em>bind columns</em> together with the new
 <em>CoelioxysElevations</em> dataset using <strong>dplyr</strong>!
 Because they are in the same order, they should fit together well!</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">C_ele</span> <span class="op">&lt;-</span> <span class="va">CoelioxysData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="co"># Select a subset of the columns</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">decimalLatitude</span>, <span class="va">decimalLongitude</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -1317,7 +1379,7 @@ ranges. We can start out by grouping our data using the scientific names
 of the species and <strong>dplyr</strong>. Within those groups we could
 easily figure out some statistics like the mean, median, max, min, et
 cetera. We could also easily plot these data to see the patterns in</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">C_ele</span> <span class="op">&lt;-</span> <span class="va">C_ele</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="co"># Group by scientific name to apply functions WITHIN group</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">scientificName</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -1334,15 +1396,85 @@ cetera. We could also easily plot these data to see the patterns in</p>
 <span><span class="co">## (`stat_boxplot()`).</span></span></code></pre>
 <p><img src="Prac2_BIOL361_files/figure-html/plotElevation-1.png" width="672"></p>
 <blockquote>
-<p><strong>Q4:</strong> Can you make a new column with the
+<p><strong>Q5:</strong> Can you make a new column with the
 <strong>median</strong> elevational values?</p>
 </blockquote>
 <blockquote>
-<p><strong>Q5:</strong> Can you restrict the map view of
+<p><strong>Q6:</strong> Can you restrict the map view of
 <em>AusEleMap_points</em> to Australia’s North East corner?
 <strong>Hint</strong>: run <code>?ggplot2::ylim()</code> and
 <code>?ggplot2::xlim()</code> and pay attention to the latitude and
 lonigtude values.</p>
+</blockquote>
+</div>
+<div class="section level3" number="4.2">
+<h3 id="find-the-distance-to-coastline-nearest-feature">
+<span class="header-section-number">4.2</span> Find the distance to
+coastline (nearest feature)<a class="anchor" aria-label="anchor" href="#find-the-distance-to-coastline-nearest-feature"></a>
+</h3>
+<p>We can also do some simple vector-vector analyses. What if, for
+example, we wanted to know how close each point was to the coast line
+(or some other vector). First of all, we can look at the points and the
+polygon together (this is very helpful for getting a lay of the land, if
+you will…</p>
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span>  <span class="co"># plot the map in ggplot2</span></span>
+<span><span class="op">(</span><span class="va">polyPointMap</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">polygonMap</span><span class="op">)</span> <span class="op">+</span> </span>
+<span>   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html" class="external-link">geom_sf</a></span><span class="op">(</span>data <span class="op">=</span> <span class="va">CoelioxysPoints</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p><img src="Prac2_BIOL361_files/figure-html/plotPointsPoly-1.png" width="672"></p>
+<p>We could then ask for the <em>st_</em>distance to the polygon map of
+Australia for each point. Something like the below. Let’s look at the
+first ten distances (from the first ten points to the polygon).</p>
+<div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">distanceToPolygon</span> <span class="op">&lt;-</span> <span class="va">CoelioxysPoints</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html" class="external-link">st_distance</a></span><span class="op">(</span><span class="va">polygonMap</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">distanceToPolygon</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Units: [m]</span></span>
+<span><span class="co">##           [,1]</span></span>
+<span><span class="co">##  [1,]    0.000</span></span>
+<span><span class="co">##  [2,]    0.000</span></span>
+<span><span class="co">##  [3,]    0.000</span></span>
+<span><span class="co">##  [4,]    0.000</span></span>
+<span><span class="co">##  [5,]    0.000</span></span>
+<span><span class="co">##  [6,]    0.000</span></span>
+<span><span class="co">##  [7,]    0.000</span></span>
+<span><span class="co">##  [8,] 2721.523</span></span>
+<span><span class="co">##  [9,]    0.000</span></span>
+<span><span class="co">## [10,]    0.000</span></span></code></pre>
+<p>Hmm… That’s a little odd, only the 8th point has a distance and the
+rest are actually zero! If you’re confused by this, don’t stress; so was
+I for a moment until I figured out that we are measuring the distance to
+a POLYGON that is essentially <em>filled in</em>! We want to measure the
+distance to the coast line, and so we need to make a conversion from a
+filled polygon to a simple line. We can evendo this within our function
+by employing the <code><a href="https://r-spatial.github.io/sf/reference/st_cast.html" class="external-link">sf::st_cast()</a></code> function by feeding
+<em>polygonMap</em> into it using the pipes (<code>%&gt;%</code>).</p>
+<div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">distanceToString</span> <span class="op">&lt;-</span> <span class="va">CoelioxysPoints</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/geos_measures.html" class="external-link">st_distance</a></span><span class="op">(</span><span class="va">polygonMap</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">sf</span><span class="fu">::</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_cast.html" class="external-link">st_cast</a></span><span class="op">(</span>to <span class="op">=</span> <span class="st">'MULTILINESTRING'</span><span class="op">)</span><span class="op">)</span> </span>
+<span><span class="fu"><a href="https://rspatial.github.io/terra/reference/headtail.html" class="external-link">head</a></span><span class="op">(</span><span class="va">distanceToString</span>, <span class="fl">10</span><span class="op">)</span></span></code></pre></div>
+<pre><code><span><span class="co">## Units: [m]</span></span>
+<span><span class="co">##             [,1]</span></span>
+<span><span class="co">##  [1,] 10738.3370</span></span>
+<span><span class="co">##  [2,] 14067.9254</span></span>
+<span><span class="co">##  [3,] 13034.8256</span></span>
+<span><span class="co">##  [4,] 14067.9254</span></span>
+<span><span class="co">##  [5,]  6758.1879</span></span>
+<span><span class="co">##  [6,]   790.4992</span></span>
+<span><span class="co">##  [7,]  2453.7997</span></span>
+<span><span class="co">##  [8,]  2721.5232</span></span>
+<span><span class="co">##  [9,]  2453.7997</span></span>
+<span><span class="co">## [10,]  2453.7997</span></span></code></pre>
+<p>There we go, I think that make a bit more sense! And, you can see
+that the eight point is the <em>same</em> distance as it was in the
+previous example. That begs the question…</p>
+<blockquote>
+<p><strong>Q7:</strong> Why was the eight point (as well as the 13th,
+21st, 42nd, and 74th) above zero, when the others were not? And why has
+that value stayed the same while the others have changed? This isn’t
+really a trick question, but just to check that you understand what we
+did.</p>
 </blockquote>
 <div class="alert alert-info">
 <p><strong> Attention:</strong> <br> Once you have completed all of the
