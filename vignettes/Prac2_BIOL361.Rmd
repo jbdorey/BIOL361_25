@@ -72,13 +72,13 @@ Below, you can see a cutout of a *.pdf* map file which has vector data (letters,
 
 This is something that is better covered in another topic, but very briefly... The earth is more or less a sphere, but quite often we want to represent this sphere on a flat surface (a map). Most of the time, if we zoom in enough this isn't really a problem! However, the further out that we zoom the more and more problematic this is! For that reason we "**project**" that round map onto a flat surface. These are "**Projected Coordinate Systems**".
 
-![**Several projected coordiante systems.**](Media_P2_BIOL361/InShot_20240506_185350804.jpg) 
+![**Several projected coordinate systems.**](Media_P2_BIOL361/InShot_20240506_185350804.jpg) 
 
 [Image from here](https://practicalgeoskills.blogspot.com/2020/04/map-projections-meaning-and-examples.html)
 
 It's clear that these projection are visually very... diverse. This becomes a problem when you're doing analyses or trying to make maps! In this prac we will mostly circumvent this issue by using a "**Geographic [3D] Coordinate System**" like WGS84 (below).
 
-![**WGS84 is a 3D geographic coordinate system that does away with projection issues (untill you want to show your map on a flat page again!).**](Media_P2_BIOL361/Globe_Atlantic.png) 
+![**WGS84 is a 3D geographic coordinate system that does away with projection issues (until you want to show your map on a flat page again!).**](Media_P2_BIOL361/Globe_Atlantic.png) 
 
 [Image from here](https://en.wikipedia.org/wiki/World_Geodetic_System)
 
