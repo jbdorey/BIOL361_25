@@ -126,7 +126,44 @@ Did you notice all of the hashtags? These are comments and **R** will ignore the
 
 # Script preparation
 
-## Working directory
+## Working directory primer
+
+I know that many of you struggle with the concept of **working directories** and I think that they are important enough, as some of you have pointed out — thank you :), to describe in some detail. Just like some of the content that we cover in Conservation Biology (e.g., think about macroecology), the name sounds much scarier than the reality and accepting that will hopefully help you master these concepts. *(Upon reflection, this may be a poor example for many.)* Similarly **working directories** are actually quite simple! One way to look at a working directory is to think of them as a breadcrumb trail from the **root directory** where all of your computer's files are stored directly to your working file (**working directory**) that contains your **R** project, code, files, etc.
+
+You could imagine that your **root directory** is your closet (e.g., `/` on Mac/Linux and `C:\` on Windows). Within your closet you may have shelves, hangers, shoe racks, *no, don't look at the skeletons*, a laundry basket, etc. These are all things that you might use to keep your closet nice, tidy, and organised — **these are your folders**. Within your drawers you may also have further compartments which you could also consider **folders** and, in this way, you closet is a hierarchical system containing smaller and smaller storage units (**folders**). Each of these units may contain further units (**folders**), and each of these may also contain items like clothes, jewelry, tools... These items are the **files**, just like you `.r` file. 
+
+![**If we imagine that the closet is our computer and each box is a file, to find the file path from the bag (orange) to the computer, we would write our breadcrumb as `/Closet/Box2/Bag`.**](Media_P1_BIOL361/filePathAnalogy.jpg)
+
+This is essentially what your computer looks like!
+
+> What about cloud storage like *OneDrive* or *GoogleDrive*? Well, imagine that you keep all of your stuff in Elon Musk's closet and say "Let me keep all of my stuff in your closet and use it whenever I want, because my closet is just a matchbox". And then you trust all of your stuff to Elon and hope that he doesn't cut it, lose it, or sell it to someone else. This is probably fine, but you often rely on internet access to be able to use stuff in your closet.
+
+Each time that you start an **R** project, you make a decision about where to store this in your closet. Maybe you store it somewhere very hidden, or maybe it's the first thing there when you open the door (near the **root directory**). Every time that you want to access that project, and the associated items (**files**), you might decide that you need to search the closet to find everything (*and trust me, finding that anything in your closet that you used two years ago is not easy!!*). This is what you do when you choose your directory from the **Files** tab in RStudio. It's a headache.
+
+Alternatively, imagine that when you next wanted to find everything associated with your project you just had to find the .r code file and at the very top there was a magical string attached to you **working directory** and every item that you needed needed for your project. This is what we are doing below.
+
+
+<div class="alert alert-info">
+  <strong> Attention:</strong> <br>
+Windows gives file paths in a different way than everyone else. :( 
+
+  <strong> Windows:</strong> <br>
+  On **Windows**, to find your file paths, right click on a file or folder and select "Properties". Then, you can copy the file "Location". But, you will need to change all of the backslashes (`\`) into forward slashes (`/`). For example:
+  
+      "D:\Users\jamesdorey\..." 
+Becomes...
+
+      "D:/Users/jamesdorey/..."
+  
+
+  <strong> MacOS:</strong> <br>
+  On Mac or Linux, this is much easier. Using a Mac, you can right-click on a file and hold the "option" key to `Copy "file/folder" as Pathname`. Simply paste this into R and you will get something like the below automatically:
+  
+    '/Users/jamesdorey/...'
+
+</div>
+
+## Setting the working directory
 
 Let us begin by telling **R** where our working directory (the folder that you made above) actually is. My "*BIOL361_pracs_2024*" folder is found at the end of the path:
 
