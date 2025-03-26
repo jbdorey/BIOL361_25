@@ -66,7 +66,7 @@
                         <h4 data-toc-skip class="author">Dr James B
 Dorey, University of Wollongong</h4>
             
-            <h4 data-toc-skip class="date">Version 2025-03-22; practical
+            <h4 data-toc-skip class="date">Version 2025-03-26; practical
 2025-03-24</h4>
       
 
@@ -260,9 +260,90 @@ actual code in white. Very handy.</div>
 <span class="header-section-number">2</span> Script preparation<a class="anchor" aria-label="anchor" href="#script-preparation"></a>
 </h2>
 <div class="section level3" number="2.1">
-<h3 id="working-directory">
-<span class="header-section-number">2.1</span> Working
-directory<a class="anchor" aria-label="anchor" href="#working-directory"></a>
+<h3 id="working-directory-primer">
+<span class="header-section-number">2.1</span> Working directory
+primer<a class="anchor" aria-label="anchor" href="#working-directory-primer"></a>
+</h3>
+<p>I know that many of you struggle with the concept of <strong>working
+directories</strong> and I think that they are important enough, as some
+of you have pointed out — thank you :), to describe in some detail. Just
+like some of the content that we cover in Conservation Biology (e.g.,
+think about macroecology), the name sounds much scarier than the reality
+and accepting that will hopefully help you master these concepts.
+<em>(Upon reflection, this may be a poor example for many.)</em>
+Similarly <strong>working directories</strong> are actually quite
+simple! One way to look at a working directory is to think of them as a
+breadcrumb trail from the <strong>root directory</strong> where all of
+your computer’s files are stored directly to your working file
+(<strong>working directory</strong>) that contains your
+<strong>R</strong> project, code, files, etc.</p>
+<p>You could imagine that your <strong>root directory</strong> is your
+closet (e.g., <code>/</code> on Mac/Linux and <code>C:\</code> on
+Windows). Within your closet you may have shelves, hangers, shoe racks,
+<em>no, don’t look at the skeletons</em>, a laundry basket, etc. These
+are all things that you might use to keep your closet nice, tidy, and
+organised — <strong>these are your folders</strong>. Within your drawers
+you may also have further compartments which you could also consider
+<strong>folders</strong> and, in this way, you closet is a hierarchical
+system containing smaller and smaller storage units
+(<strong>folders</strong>). Each of these units may contain further
+units (<strong>folders</strong>), and each of these may also contain
+items like clothes, jewelry, tools… These items are the
+<strong>files</strong>, just like you <code>.r</code> file.</p>
+<div class="float">
+<img src="Media_P1_BIOL361%2FfilePathAnalogy.jpg" alt="If we imagine that the closet is our computer and each box is a file, to find the file path from the bag (orange) to the computer, we would write our breadcrumb as /Closet/Box2/Bag."><div class="figcaption"><strong>If we imagine that the closet is our
+computer and each box is a file, to find the file path from the bag
+(orange) to the computer, we would write our breadcrumb as
+<code>/Closet/Box2/Bag</code>.</strong></div>
+</div>
+<p>This is essentially what your computer looks like!</p>
+<blockquote>
+<p>What about cloud storage like <em>OneDrive</em> or
+<em>GoogleDrive</em>? Well, imagine that you keep all of your stuff in
+Elon Musk’s closet and say “Let me keep all of my stuff in your closet
+and use it whenever I want, because my closet is just a matchbox”. And
+then you trust all of your stuff to Elon and hope that he doesn’t cut
+it, lose it, or sell it to someone else. This is probably fine, but you
+often rely on internet access to be able to use stuff in your
+closet.</p>
+</blockquote>
+<p>Each time that you start an <strong>R</strong> project, you make a
+decision about where to store this in your closet. Maybe you store it
+somewhere very hidden, or maybe it’s the first thing there when you open
+the door (near the <strong>root directory</strong>). Every time that you
+want to access that project, and the associated items
+(<strong>files</strong>), you might decide that you need to search the
+closet to find everything (<em>and trust me, finding that anything in
+your closet that you used two years ago is not easy!!</em>). This is
+what you do when you choose your directory from the
+<strong>Files</strong> tab in RStudio. It’s a headache.</p>
+<p>Alternatively, imagine that when you next wanted to find everything
+associated with your project you just had to find the .r code file and
+at the very top there was a magical string attached to you
+<strong>working directory</strong> and every item that you needed needed
+for your project. This is what we are doing below.</p>
+<div class="alert alert-info">
+<p><strong> Attention:</strong> <br> Windows gives file paths in a
+different way than everyone else. :(</p>
+<p><strong> Windows:</strong> <br> On <strong>Windows</strong>, to find
+your file paths, right click on a file or folder and select
+“Properties”. Then, you can copy the file “Location”. But, you will need
+to change all of the backslashes (<code>\</code>) into forward slashes
+(<code>/</code>). For example:</p>
+<pre><code>  "D:\Users\jamesdorey\..." </code></pre>
+<p>Becomes…</p>
+<pre><code><span>  <span class="st">"D:/Users/jamesdorey/..."</span></span></code></pre>
+<p><strong> MacOS:</strong> <br> On Mac or Linux, this is much easier.
+Using a Mac, you can right-click on a file and hold the “option” key to
+<code>Copy "file/folder" as Pathname</code>. Simply paste this into R
+and you will get something like the below automatically:</p>
+<pre><code><span><span class="st">'/Users/jamesdorey/...'</span></span></code></pre>
+</div>
+</div>
+<div class="section level3" number="2.2">
+<h3 id="setting-the-working-directory">
+<span class="header-section-number">2.2</span> Setting the working
+directory<a class="anchor" aria-label="anchor" href="#setting-the-working-directory"></a>
 </h3>
 <p>Let us begin by telling <strong>R</strong> where our working
 directory (the folder that you made above) actually is. My
@@ -270,7 +351,7 @@ directory (the folder that you made above) actually is. My
 path:</p>
 <p>“<em>/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1</em>”
 (see again, no spaces!). So, I can run the below:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="co"># Set the RootPath to your folder</span></span>
 <span><span class="va">RootPath</span> <span class="op">&lt;-</span> <span class="st">"/Users/jamesdorey/Desktop/Uni/Teaching/BIOL361/Lectures/2025/Github_BIOL361_25/BIOL361_25/DoreyPrac1"</span></span>
 <span>  <span class="co"># You can then set this as the project's working directory. </span></span>
@@ -289,14 +370,14 @@ mac you can simply use “<strong>command+enter</strong>” and on PC you
 can use “<strong>control+enter</strong>” to run your code. It’ll make
 you life easier and quicker.</p>
 </div>
-<div class="section level3" number="2.2">
+<div class="section level3" number="2.3">
 <h3 id="install-packages">
-<span class="header-section-number">2.2</span> Install packages<a class="anchor" aria-label="anchor" href="#install-packages"></a>
+<span class="header-section-number">2.3</span> Install packages<a class="anchor" aria-label="anchor" href="#install-packages"></a>
 </h3>
 <p>Let us also quickly install a few packages that we’ll need to start
 with next week (you mostly only need to do this once per package and per
 version of <strong>R</strong>).</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">#  This package is for data management and table manipulation</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"dplyr"</span><span class="op">)</span></span>
 <span><span class="co">#  This package is for reading in tabular data, like .csv files</span></span>
@@ -311,9 +392,9 @@ version of <strong>R</strong>).</p>
 ran the above code. That’s normal, many packages depend on other
 packages to work.</p>
 </div>
-<div class="section level3" number="2.3">
+<div class="section level3" number="2.4">
 <h3 id="load-packages">
-<span class="header-section-number">2.3</span> Load packages<a class="anchor" aria-label="anchor" href="#load-packages"></a>
+<span class="header-section-number">2.4</span> Load packages<a class="anchor" aria-label="anchor" href="#load-packages"></a>
 </h3>
 <p>The last <strong>R</strong> thing that I will get you to do today is
 to load the packages into <strong>R</strong> (this also should be done
@@ -322,7 +403,7 @@ need to do this because you may not always want EVERY package that you
 have ever downloaded to be accessible from in <strong>R</strong>… it can
 cause issues. In this way, you can be more selective about which ones
 are active.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://readr.tidyverse.org" class="external-link">readr</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://magrittr.tidyverse.org" class="external-link">magrittr</a></span><span class="op">)</span></span>
@@ -341,7 +422,7 @@ Coding Club</strong></a>.</p>
 play with. We can start by simply downloading it using the below code
 (or you could copy the url to the website and download it via your
 browser, but why not do it all in R?).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">utils</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">"https://raw.githubusercontent.com/jbdorey/BIOL361_25/main/DoreyPrac1/SuppCollectionInfo_7Aug2023.csv"</span>,</span>
 <span>                     destfile <span class="op">=</span> <span class="st">"SuppCollectionInfo_7Aug2023.csv"</span>,</span>
 <span>                     method<span class="op">=</span><span class="st">"curl"</span><span class="op">)</span></span></code></pre></div>
@@ -350,7 +431,7 @@ your working directory (<em>if you’re not sure type “getwd()” into R to
 see where this is</em>). Let’s go ahead and read it into R and we can
 also look at it once it’s read in. To do this, we will use the
 <strong>tidyverse</strong> package, <strong>readr</strong>.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="co"># read in the data using readr</span></span>
 <span><span class="va">HylaeusData</span> <span class="op">&lt;-</span> <span class="fu">readr</span><span class="fu">::</span><span class="fu"><a href="https://readr.tidyverse.org/reference/read_delim.html" class="external-link">read_csv</a></span><span class="op">(</span><span class="st">"SuppCollectionInfo_7Aug2023.csv"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; New names:</span></span>
@@ -11553,7 +11634,7 @@ going to do below. However, they would be (a) slower, (b) less
 reproducible, and (c) more prone to error. So, let’s go ahead and do
 them in <strong>R</strong>! Let’s begin with a simple function to
 <em>filter</em> our dataset to only include <em>male</em> specimens.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># We can create a new R dataset, without over-writing the previous one as below</span></span>
 <span><span class="va">HylaeusData_malesOnly</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">sex</span> <span class="op">==</span> <span class="st">"male"</span><span class="op">)</span></span></code></pre></div>
@@ -11576,7 +11657,7 @@ to do in Excel. One of the powerful parts of <strong>R</strong> coding
 is that you can do really complex things really, really, easily! Why
 don’t we try to do a more-complex filtering command in
 <strong>R</strong>?</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Let's filter based on two out of three countries (French Polynesia, Micronesia, and Fiji)</span></span>
 <span><span class="va">HylaeusData_FPandM</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="co"># Use the %in% command to ask for ANY of the text strings *in* the country column</span></span>
@@ -14559,7 +14640,7 @@ better. You might do this to not share all of the data, or to reduce the
 size of a dataset (especially when it gets in the millions of rows —
 which, by the way, <strong>Excel</strong> will <strong>not</strong>
 tolerate).</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusData_spLatLon</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">scientificName</span>, <span class="va">decimalLatitude</span>, <span class="va">decimalLongitude</span><span class="op">)</span></span></code></pre></div>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:350px; ">
@@ -15517,7 +15598,7 @@ some annoying find-replace to modify it. What a pain! This is much
 easier in <strong>R</strong>. Let’s <em>mutate</em> up a new column to
 extract the genus name from the <em>scientificName</em> column in the
 last dataset that we made!</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusData_spLL_G</span>  <span class="op">&lt;-</span> <span class="va">HylaeusData_spLatLon</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html" class="external-link">str_extract</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">scientificName</span>, </span>
 <span>                                             pattern <span class="op">=</span> <span class="st">"[A-Z][a-z]+"</span><span class="op">)</span>,</span>
@@ -16758,7 +16839,7 @@ these same data!</p>
 </h3>
 <p>We will start with a simple summary of the number of male and female
 bees in the dataset…</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusHistogram</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16796,7 +16877,7 @@ no? If we want to (1) save a plot object, like
 <code>HylaeusHist_pretty</code>, and (2) view it at the same time, we
 can also surround the whole thing in brackets as below — <em>just a
 little tip :)</em></p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16819,7 +16900,7 @@ little tip :)</em></p>
 <p>That’s great, but we relied on <strong>R</strong> to choose colours
 for us. That’s fine, but sometimes we really want to make thigns
 prettier still!</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16843,7 +16924,7 @@ prettier still!</p>
 </h4>
 <p>Wonderful! But what about that gross default background?</p>
 <p><strong>Classic theme</strong></p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16865,7 +16946,7 @@ prettier still!</p>
 <p><strong>Dark theme</strong></p>
 <p>I don’t know why you’d ever use this… unless for a dark mode
 website?</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16886,7 +16967,7 @@ website?</p>
 <p><img src="Prac1_BIOL361_files/figure-html/ggHist_sex_manual_dark-1.png" width="672"></p>
 <p><strong>Linedraw theme</strong></p>
 <p>I have never used this one before either, but here you go!</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16917,7 +16998,7 @@ won’t touch on here.</p>
 <p>We could also look at some line graphs of when the specimens were
 collected! This is cool because <strong>R</strong> is able to translate
 the date format into a meaningful X-axis.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16936,7 +17017,7 @@ were collected? Well, we could <code>group</code> these in
 <code><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">ggplot2::aes()</a></code>, or, we could take advantage of
 <strong>ggplot2</strong>’s simple method of adding (<code>+</code>) in
 new elements! So, let’s add in some points based on sex!</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="op">(</span><span class="va">HylaeusHist_pretty</span> <span class="op">&lt;-</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span></span>
 <span>              <span class="co"># You need to tell ggplot2 which dataset to use</span></span>
 <span>            data <span class="op">=</span> <span class="va">HylaeusData</span>,</span>
@@ -16983,7 +17064,7 @@ let’s use years as sampling events. First, we will have a look at the
 number of records by <em>year</em>, by calling the
 <code><a href="https://rdrr.io/r/base/table.html" class="external-link">base::table()</a></code> function for year, which will count for
 us.</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span>  <span class="co"># Get a summary table of the counts per year</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/table.html" class="external-link">table</a></span><span class="op">(</span><span class="va">HylaeusData</span><span class="op">$</span><span class="va">year</span><span class="op">)</span></span>
 <span><span class="co">#&gt; </span></span>
@@ -17023,7 +17104,7 @@ comments there or not.</p>
 Let’s test that using a statistic; the <em>Z-test</em> of two
 proportions using the default <code><a href="https://rdrr.io/r/stats/prop.test.html" class="external-link">stats::prop.test()</a></code>
 function.</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusTable</span> <span class="op">&lt;-</span> <span class="va">HylaeusData</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>    <span class="co"># First, we will gorup by year and sex to apply functions within those groupings</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">year</span>, <span class="va">sex</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
