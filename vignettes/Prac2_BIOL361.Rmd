@@ -372,6 +372,10 @@ C_ele <- C_ele %>%
 
 `r if(demonstratorVersion == TRUE){"**something like 'ggplot2::ylim(-30, -10) + ggplot2::xlim(140, 155)' added to the script**"}`
 
+> **Q7:** What happens when you change the sign of the `ylim` (e.g., positive; 30 or negative -30) or  `xlim` (e.g., positive; 140 or negative -140)? Explain what happens in terms of where on Earth the plot covers.
+
+`r if(demonstratorVersion == TRUE){"**Changing ylim to a *positive* value will plot in the Northern Hemisphere. Changing xlim to *negative* will plot in the Western Hemisphere **"}`
+
 ```{r restrictExtent, include = FALSE}
 restricted_AusEle <- AusEleMap_points +
   ggplot2::ylim(-30, -10) + ggplot2::xlim(140, 155)
@@ -406,7 +410,7 @@ head(distanceToString, 10)
 
 There we go, I think that make a bit more sense! And, you can see that the eight point is the *same* distance as it was in the previous example. That begs the question... 
 
-> **Q7:** Why was the eight point (as well as the 13th, 21st, 42nd, and 74th) above zero, when the others were not? And why has that value stayed the same while the others have changed? This isn't really a trick question, but just to check that you understand what we did.
+> **Q8:** Why was the eight point (as well as the 13th, 21st, 42nd, and 74th) above zero, when the others were not? And why has that value stayed the same while the others have changed? This isn't really a trick question, but just to check that you understand what we did.
 
 `r if(demonstratorVersion == TRUE){"**Those points that were >0 initially were off the coast of Australia. Perhaps because the coordinates were poorly collected, with poor precision, or even in an inter-tidal zone. The answer may also change if you changed the map resolution which woudl shift the coastline slightly.**"}`
 
