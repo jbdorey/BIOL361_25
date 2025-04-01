@@ -239,7 +239,7 @@ HylaeusData <- readr::read_csv("SuppCollectionInfo_7Aug2023.csv")
 
 Now that we have read it in, you can view the data either by simply running "`HylaeusData`" or "`View(HylaeusData)`". You can also have a scroll below of the dataset.
 
-> **Q1:** What kind of data are we looking at here?
+> **Q1:** What kind of data are we looking at here? **Note**: this is a macroecology question that relates to those lectures. It is *not* a statistical question or a coding question (although if it were one of those things it would be the latter!)
 
 `r if(demonstratorVersion == TRUE){"**These are species occurrence data.**"}`
 
@@ -353,7 +353,7 @@ HylaeusHistogram
 
 That's an easy way to quickly look at your data and identify what it looks like! Do you see any patterns? Any potential problems? Answer the question below.
 
-> **Q4:** Why are there specimens that are "**NA**" for sex?
+> **Q4:** Why are there specimens that are "**NA**" for sex? **Hint**: Bees are actually usually quite easy to sex.
 
 `r if(demonstratorVersion == TRUE){"** Because they don't have sex specified in the dataset.**"}`
 
@@ -391,7 +391,8 @@ That's great, but we relied on **R** to choose colours for us. That's fine, but 
     # useful and easy to code actually! 
    ggplot2::geom_histogram(stat = "count") +
     # Let's use a MANUAL colour scale
-   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9", "grey"))
+   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9"),
+                              na.value = "grey")
 )
 ```
 
@@ -413,7 +414,8 @@ Wonderful! But what about that gross default background?
     # useful and easy to code actually! 
    ggplot2::geom_histogram(stat = "count") +
     # Let's use a MANUAL colour scale
-   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9", "grey")) +
+   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9"),
+                              na.value = "grey") +
     # Let's use a classic theme
    ggplot2::theme_classic()
 )
@@ -434,7 +436,8 @@ I don't know why you'd ever use this... unless for a dark mode website?
     # useful and easy to code actually! 
    ggplot2::geom_histogram(stat = "count") +
     # Let's use a MANUAL colour scale
-   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9", "grey")) +
+   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9"),
+                              na.value = "grey") +
     # Let's use a classic theme
    ggplot2::theme_dark()
 )
@@ -455,7 +458,8 @@ I have never used this one before either, but here you go!
     # useful and easy to code actually! 
    ggplot2::geom_histogram(stat = "count") +
     # Let's use a MANUAL colour scale
-   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9", "grey")) +
+   ggplot2::scale_fill_manual(values = c("#E69F00", "#56B4E9"),
+                              na.value = "grey") +
     # Let's use a classic theme
    ggplot2::theme_linedraw()
 )
@@ -500,7 +504,8 @@ Cool, but what if we want to also see when the males and the females were collec
                                       # this depending on what you're doing
                                     colour = sex),
                        stat = "count") +
-   ggplot2::scale_colour_manual(values = c("#E69F00", "#56B4E9", "grey")) +
+   ggplot2::scale_colour_manual(values = c("#E69F00", "#56B4E9"),
+                              na.value = "hotpink") +
     # Let's use a classic theme
    ggplot2::theme_classic()
 )
