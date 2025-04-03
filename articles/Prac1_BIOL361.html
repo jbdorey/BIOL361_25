@@ -15610,6 +15610,13 @@ some annoying find-replace to modify it. What a pain! This is much
 easier in <strong>R</strong>. Let’s <em>mutate</em> up a new column to
 extract the genus name from the <em>scientificName</em> column in the
 last dataset that we made!</p>
+<p><strong>Note</strong>: <code><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">dplyr::mutate</a></code> is not the most
+heuristic function name in <strong>dplyr</strong>. But, you can
+essentially use it to (i) add new column, (ii) over-write columns, and
+(iii) modify existing columns (essentially still over-writing). Below,
+we are creating a new column called “genus” that is then filled with the
+output from
+<code>stringr::str_extract(string = scientificName, pattern = "[A-Z][a-z]+")</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">HylaeusData_spLL_G</span>  <span class="op">&lt;-</span> <span class="va">HylaeusData_spLatLon</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>genus <span class="op">=</span> <span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_extract.html" class="external-link">str_extract</a></span><span class="op">(</span>string <span class="op">=</span> <span class="va">scientificName</span>, </span>
