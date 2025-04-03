@@ -188,7 +188,7 @@ AustralianElevations
 
 How about that! Within a few seconds we have a *spatRaster* showing the elevatino across Australia! 
 
-> **Q2:** Looking at the summary of *AustralianElevations*, (1) what are the dimensions of the file, (2) what is the coordinate reference system and is it a **projected** or **geographic** coordinate system (see "Projections" above), and (3) what are the minimum and maximum elevational values for this map of Australia?
+> **Q1:** Looking at the summary of *AustralianElevations*, (1) what are the dimensions of the file, (2) what is the coordinate reference system and is it a **projected** or **geographic** coordinate system (see "Projections" above), and (3) what are the minimum and maximum elevational values for this map of Australia?
 
 `r if(demonstratorVersion == TRUE){"**(1) 4296x5592; (2) geographic coordinate system — WGS 84; (3) -60 and +2159 meters above sea level**"}`
 
