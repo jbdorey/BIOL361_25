@@ -1377,8 +1377,20 @@ Because they are in the same order, they should fit together well!</p>
 we could look at how these species interact with elevation across their
 ranges. We can start out by grouping our data using the scientific names
 of the species and <strong>dplyr</strong>. Within those groups we could
-easily figure out some statistics like the mean, median, max, min, et
-cetera. We could also easily plot these data to see the patterns in</p>
+easily figure out some statistics like the mean, median, max, min,
+etcetera. We could also easily plot these data to see the patterns as
+well!</p>
+<p><strong>Note</strong>: Some people find <strong>dplyr</strong>’s
+<code>mutate</code> function quite confusing; I used to be one of them.
+You can think of <code>mutate</code> as a function that <em>mutates</em>
+columns of data by adding or changing. In the below chunk of code, we
+are <em>mutating</em> in a new column called “mean_elevation”. We could
+also over-write or modify an existing column. For example if you wanted
+to over-write “mean_elevation”, you could add another
+<code>mutate</code> directly below and make it something completely new,
+or even change it from a <code>numeric</code> value to a
+<code>character</code> value! Adding something like this will work …
+<code>%&gt;% dplyr::mutate(mean_elevation = mean_elevation %&gt;% as.character())</code></p>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">C_ele</span> <span class="op">&lt;-</span> <span class="va">C_ele</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="co"># Group by scientific name to apply functions WITHIN group</span></span>
