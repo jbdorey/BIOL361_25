@@ -310,6 +310,8 @@ kableExtra::kbl(HylaeusData_spLatLon) %>%
 
 I will leave you with one more little tidbit of **R**'s power and ease of use. One thing that you might do in **Excel** that would be a bit of a pain is create a new column using some other existing column. You could copy it across and do some annoying find-replace to modify it. What a pain! This is much easier in **R**. Let's *mutate* up a new column to extract the genus name from the *scientificName* column in the last dataset that we made! 
 
+**Note**: `dplyr::mutate` is not the most heuristic function name in **dplyr**. But, you can essentially use it to (i) add new column, (ii) over-write columns, and (iii) modify existing columns (essentially still over-writing). Below, we are creating a new column called "genus" that is then filled with the output from `stringr::str_extract(string = scientificName, pattern = "[A-Z][a-z]+")`.
+
 ```{r mutate}
 HylaeusData_spLL_G  <- HylaeusData_spLatLon %>% 
   dplyr::mutate(genus = stringr::str_extract(string = scientificName, 
